@@ -1,0 +1,99 @@
+@extends('layouts/contentNavbarLayout')
+
+@section('title', 'Tambah Barang Modal Pinjam')
+
+@section('content')
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Barang/</span> Barang Modal Pinjam</h4>
+
+<div class="row">
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form action="{{route('barangmodalpinjam')}}" method="POST">
+          @csrf
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="tanggal_keluar">Tanggal Keluar</label>
+            <div class="col-sm-10">
+              <input type="datetime-local" class="form-control" id="tanggal_keluar" name="tanggal_keluar" value="{{\Carbon\Carbon::now()}}" required/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="tanggal_kembali">Tanggal Kembali</label>
+            <div class="col-sm-10">
+              <input type="datetime-local" class="form-control" id="tanggal_kembali" name="tanggal_kembali" value="{{\Carbon\Carbon::now()}}" required/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="kegunaan">Kegunaan</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="kegunaan" name="kegunaan" required/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="selectruang">Ruang Peminjaman</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectruang" name="id_ruang" required>
+                <option ></option>
+                @foreach ($dataruang['data'] as $ruang)
+                    <option value="{{$ruang['id']}}">{{$ruang['nama']}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="selectkaryawan">Karyawan</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectkaryawan" name="id_karyawan" required>
+                <option ></option>
+                @foreach ($datakaryawan['data'] as $karyawan)
+                    <option value="{{$karyawan['id']}}">{{$karyawan['nama']}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="selectbarang">Barang</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectbarang" name="id_barang" onchange="selectbarangchange()" required>
+                <option ></option>
+                @foreach ($databarang as $barang)
+                    <option value="{{$barang['id']}}">{{$barang['nama']}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="selectbarangfisik">Barang Fisik</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectbarangfisik" name="id_barang_fisik[]" multiple="multiple" required>
+
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function selectbarangchange(){
+  let selectbarang = document.getElementById('selectbarang');
+  $.ajax({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type : 'POST',
+      url : '/admin/dashboard/master/barang/getspesifikbarangfisik',
+      data : 'idbarang='+selectbarang.value,
+      success : function(response){
+          $('#selectbarangfisik').html(response);
+      }
+  });
+}
+</script>
+@endsection

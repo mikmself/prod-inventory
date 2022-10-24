@@ -1,0 +1,103 @@
+{
+  "menu": [
+    {
+      "url": "/admin/dashboard/",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "dashboard-analytics"
+    },
+    {
+      "menuHeader": "Barang"
+    },
+    {
+      "name": "Barang",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "pages-account-settings",
+      "submenu": [
+        {
+          "url": "/admin/dashboard/master/barang",
+          "name": "Data Barang",
+          "slug": "pages-account-settings-account"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/fisik",
+          "name": "Data Barang Fisik",
+          "slug": "pages-account-settings-notifications"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/indexbarangmasuk",
+          "name": "Barang Masuk",
+          "slug": "pages-account-settings-connections"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/indexbarangkeluar",
+          "name": "Barang Keluar",
+          "slug": "pages-account-settings-connections"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/indexbarangmodalkeluar",
+          "name": "Barang Modal Keluar",
+          "slug": "pages-account-settings-connections"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/indexbarangmodalpinjam",
+          "name": "Barang Modal Pinjam",
+          "slug": "pages-account-settings-connections"
+        },
+        {
+          "url": "/admin/dashboard/master/barang/indexbarangmodalkembali",
+          "name": "Barang Modal Kembali",
+          "slug": "pages-account-settings-connections"
+        }
+      ]
+    },
+    {
+      "name": "Kategori",
+      "icon": "menu-icon tf-icons bx bx-collection",
+      "slug": "cards-basic",
+      "url": "/admin/dashboard/master/kategori"
+    },
+    {
+      "name": "Suplayer",
+      "icon": "menu-icon tf-icons bx bx-copy",
+      "slug": "cards-basic",
+      "url": "/admin/dashboard/master/suplayer"
+    },
+    {
+      "menuHeader": "Environment"
+    },
+    {
+      "name": "Ruang",
+      "icon": "menu-icon tf-icons bx bx-box",
+      "slug": "ui",
+      "url": "/admin/dashboard/master/ruang"
+    },
+    {
+      "url": "/admin/dashboard/master/karyawan",
+      "icon": "menu-icon tf-icons bx bx-user",
+      "name": "Karyawan",
+      "slug": "icons-boxicons"
+    },
+    {
+      "url": "/admin/dashboard/master/user",
+      "icon": "menu-icon tf-icons bx bx-crown",
+      "name": "User",
+      "slug": "icons-boxicons"
+    },
+    {
+      "menuHeader": "Pengaturan"
+    },
+    {
+      "url": "/admin/dashboard/master/pengaturan",
+      "icon": "menu-icon tf-icons bx bx-category",
+      "name": "Data Pengaturan",
+      "slug": "icons-boxicons"
+    },
+    {
+      "url": "/admin/dashboard/pengaturan",
+      "icon": "menu-icon tf-icons bx bx-cog",
+      "name": "Pengaturan",
+      "slug": "icons-boxicons"
+    }
+  ]
+}
