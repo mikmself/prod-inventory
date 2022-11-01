@@ -18,7 +18,8 @@ class AuthController extends Controller
         if($data['code'] == 1){
             Session::put('firstname',$data['data']['firstname']);
             Session::put('lastname',$data['data']['lastname']);
-            Session::put('level',$data['data']['level']);
+            Session::put('unitkerja',$data['data']['unitkerja']);
+            Session::put('nip',$data['data']['nip']);
             Session::put('email',$data['data']['email']);
             Session::put('token',$data['data']['token']);
             Session::put('apikey',$data['data']['access_token']);

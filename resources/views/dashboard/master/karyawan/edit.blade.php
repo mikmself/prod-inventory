@@ -11,6 +11,7 @@
       <div class="card-body">
         <form action="{{route('updatekaryawan',$data['data']['id'])}}" method="POST">
           @csrf
+          <input type="hidden" name="id_user" value="{{$data['data']['id_user']}}">
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="nama">Nama</label>
             <div class="col-sm-10">
@@ -18,15 +19,14 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="status">Status</label>
+            <label class="col-sm-2 col-form-label" for="selectunitkerja">Unit Kerja</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="status" name="status" value="{{$data['data']['status']}}" required/>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="unit_kerja">Unit Kerja</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="unit_kerja" name="unit_kerja" value="{{$data['data']['unit_kerja']}}" required/>
+              <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
+                <option ></option>
+                @foreach ($unitkerja['data'] as $unitkerja)
+                    <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == $data['data']['id_unitkerja'] ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
           <div class="row justify-content-end">

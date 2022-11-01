@@ -24,6 +24,23 @@
             </div>
           </div>
           <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="selectunitkerja">Unit Kerja</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
+                <option ></option>
+                @foreach ($unitkerja['data'] as $unitkerja)
+                    <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == $data['data']['id_unitkerja'] ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="nip">NIP</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nip" name="nip" value="{{$data['data']['nip']}}" required/>
+            </div>
+          </div>
+          <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="email">Email</label>
             <div class="col-sm-10">
               <input type="email" class="form-control" id="email" name="email" value="{{$data['data']['email']}}" required/>
@@ -38,7 +55,10 @@
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="level">Level</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="level" name="level" value="{{$data['data']['level']}}" required/>
+              <select name="level" id="level" class="form-control">
+                <option value="user" {{$data['data']['level'] == 'user' ? 'selected' : ''}} class="form-control">User</option>
+                <option value="admin" {{$data['data']['level'] == 'admin' ? 'selected' : ''}} class="form-control">Admin</option>
+              </select>
             </div>
           </div>
           <div class="row justify-content-end">

@@ -55,12 +55,13 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-$("#selectkaryawan").select2();
+$("#selectuser").select2();
 $("#selectruang").select2();
 $("#selectbarang").select2();
 $("#selectbarangfisik").select2();
 $("#selectsuplayer").select2();
 $("#selectkategori").select2();
+$("#selectunitkerja").select2();
 
 // Select kategori
 try {

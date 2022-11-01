@@ -73,14 +73,14 @@
       "url": "/admin/dashboard/master/ruang"
     },
     {
-      "url": "/admin/dashboard/master/karyawan",
-      "icon": "menu-icon tf-icons bx bx-user",
-      "name": "Karyawan",
-      "slug": "icons-boxicons"
+      "name": "Unit Kerja",
+      "icon": "menu-icon tf-icons bx bx-crown",
+      "slug": "ui",
+      "url": "/admin/dashboard/master/unitkerja"
     },
     {
       "url": "/admin/dashboard/master/user",
-      "icon": "menu-icon tf-icons bx bx-crown",
+      "icon": "menu-icon tf-icons bx bx-user",
       "name": "User",
       "slug": "icons-boxicons"
     },

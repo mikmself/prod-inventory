@@ -68,7 +68,7 @@ $navbarDetached = ($navbarDetached ?? '');
                     </div>
                     <div class="flex-grow-1">
                       <span class="fw-semibold d-block">{{session()->get('firstname')}}</span>
-                      <small class="text-muted">{{session()->get('level')}}</small>
+                      <small class="text-muted">{{session()->get('unitkerja')}}</small>
                     </div>
                   </div>
                 </a>

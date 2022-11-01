@@ -28,8 +28,8 @@
           <form id="formAuthentication" class="mb-3" action="{{route('storelogin')}}" method="POST">
             @csrf
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="text" class="form-control" id="email" name="email" placeholder="Masukan email" autofocus>
+              <label for="nip" class="form-label">Nip</label>
+              <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan Nip" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">

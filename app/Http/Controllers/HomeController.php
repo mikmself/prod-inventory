@@ -11,7 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($this->api."/indexdashboard" . $this->getToken());
+        return view('dashboard.index',compact('data'));
     }
     public function indexPengaturan(){
         $email = Session::get('email');
@@ -23,10 +26,7 @@ class HomeController extends Controller
         return view('dashboard.pengaturan.index',compact('user'));
     }
     public function indexBarangKeluar(){
-        // $datamentah = Http::get($this->api."/user/nonauth/indexbarang");
         $karyawan = Http::get($this->api."/user/nonauth/indexkaryawan");
-        // $collection = collect($datamentah->json()['data']);
-        // $data = $collection->whereIn('id_kategori',2);
         return view('feuser.barangkeluar',compact('karyawan'));
     }
     public function barangKeluar(Request $request){

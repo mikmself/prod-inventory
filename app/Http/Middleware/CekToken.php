@@ -17,7 +17,7 @@ class CekToken
         if(isset($token) && isset($apikey)){
             $data = Http::withHeaders([
                 'apikey' => $apikey
-            ])->get($api."/auth/cektoken?token=" . $token);
+            ])->get($api."/cektoken/token?token=" . $token);
             if($data['code'] == 1){
                 return $next($request);
             }else{

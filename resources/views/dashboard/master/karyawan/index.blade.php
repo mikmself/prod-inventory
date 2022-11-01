@@ -14,7 +14,6 @@
         <tr>
           <th class="margin-left">ID karyawan</th>
           <th>Nama</th>
-          <th>Status</th>
           <th>Unit Kerja</th>
           <th>Update Terakhir</th>
           <th></th>
@@ -25,8 +24,7 @@
         <tr>
             <td class="margin-left">{{$data['id']}}</td>
             <td>{{$data['nama']}}</td>
-            <td>{{$data['status']}}</td>
-            <td>{{$data['unit_kerja']}}</td>
+            <td>{{$data['unitkerja']['nama']}}</td>
             <td>{{ \Carbon\Carbon::parse($data['updated_at'])->diffForHumans()}}</td>
             <td class="action">
                 <a href="{{route('editkaryawan',$data['id'])}}" class="btn btn-warning">Ubah</a>

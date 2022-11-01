@@ -13,7 +13,9 @@
       <thead>
         <tr>
           <th class="margin-left">ID user</th>
-          <th>Name</th>
+          <th>Nama</th>
+          <th>NIP</th>
+          <th>Unit Kerja</th>
           <th>Email</th>
           <th>No Telephone</th>
           <th>Level</th>
@@ -27,6 +29,8 @@
             <td class="margin-left">{{$data['id']}}</td>
             <td>{{$data['firstname']}} {{$data['lastname']}}</td>
             <td>{{$data['email']}}</td>
+            <td>{{$data['nip']}}</td>
+            <td>{{$data['unitkerja']['nama']}}</td>
             <td>{{$data['notelp']}}</td>
             <td>{{$data['level']}}</td>
             <td>{{ \Carbon\Carbon::parse($data['updated_at'])->diffForHumans()}}</td>

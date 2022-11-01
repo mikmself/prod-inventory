@@ -61,12 +61,12 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="selectkaryawan">Penerima</label>
+            <label class="col-sm-2 col-form-label" for="selectuser">Penerima</label>
             <div class="col-sm-10">
-              <select class="form-control" id="selectkaryawan" name="penerima" required>
+              <select class="form-control" id="selectuser" name="penerima" required>
                 <option ></option>
-                @foreach ($datakaryawan['data'] as $karyawan)
-                    <option value="{{$karyawan['nama']}}">{{$karyawan['nama']}}</option>
+                @foreach ($datauser['data'] as $user)
+                    <option value="{{$user['firstname'] . " " . $user['lastname']}}">{{$user['firstname'] . " " . $user['lastname']}}</option>
                 @endforeach
               </select>
             </div>

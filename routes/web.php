@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SuplayerController;
+use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,14 +86,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
           Route::post('/getspesifikbarangfisik',[BarangController::class,'getSpesifikBarangFisik'])->name('getspesifikbarangfisik');
           Route::post('/getbarangsesuaikategori',[BarangController::class,'getBarangSesuaiKategori'])->name('getbarangsesuaikategori');
       });
-      Route::prefix('karyawan')->group(function(){
-          Route::get('/',[KaryawanController::class,'index'])->name('indexkaryawan');
-          Route::get('/create',[KaryawanController::class,'create'])->name('createkaryawan');
-          Route::post('/store',[KaryawanController::class,'store'])->name('storekaryawan');
-          Route::get('/edit/{id}',[KaryawanController::class,'edit'])->name('editkaryawan');
-          Route::post('/update/{id}',[KaryawanController::class,'update'])->name('updatekaryawan');
-          Route::get('/delete/{id}',[KaryawanController::class,'destroy'])->name('deletekaryawan');
-      });
       Route::prefix('kategori')->group(function(){
           Route::get('/',[KategoriController::class,'index'])->name('indexkategori');
           Route::get('/create',[KategoriController::class,'create'])->name('createkategori');
@@ -101,6 +94,14 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
           Route::post('/update/{id}',[KategoriController::class,'update'])->name('updatekategori');
           Route::get('/delete/{id}',[KategoriController::class,'destroy'])->name('deletekategori');
       });
+    Route::prefix('unitkerja')->group(function(){
+        Route::get('/',[UnitKerjaController::class,'index'])->name('indexunitkerja');
+        Route::get('/create',[UnitKerjaController::class,'create'])->name('createunitkerja');
+        Route::post('/store',[UnitKerjaController::class,'store'])->name('storeunitkerja');
+        Route::get('/edit/{id}',[UnitKerjaController::class,'edit'])->name('editunitkerja');
+        Route::post('/update/{id}',[UnitKerjaController::class,'update'])->name('updateunitkerja');
+        Route::get('/delete/{id}',[UnitKerjaController::class,'destroy'])->name('deleteunitkerja');
+    });
       Route::prefix('pengaturan')->group(function(){
           Route::get('/',[PengaturanController::class,'index'])->name('indexpengaturan');
           Route::get('/create',[PengaturanController::class,'create'])->name('createpengaturan');
