@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UnitKerjaController extends Controller
@@ -13,6 +14,7 @@ class UnitKerjaController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/unitkerja" . $this->getToken());
+        dd($data['data']);
         return view('dashboard.master.unitkerja.index',compact('data'));
     }
     public function create()
@@ -64,5 +66,24 @@ class UnitKerjaController extends Controller
             Alert::error('Operasi Gagal', $data['message']);
             return back();
         }
+    }
+
+    public function previouspage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.unitkerja.index',compact('data'));
+    }
+    public function gotopage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.unitkerja.index',compact('data'));
+    }
+    public function nextpage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.unitkerja.index',compact('data'));
     }
 }

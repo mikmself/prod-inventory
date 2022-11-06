@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/assets/css/select2.css">
     <link rel="stylesheet" href="/assets/css/user.css">
     <title>@yield('title')</title>
+    <style>
+
+    </style>
 </head>
 <body>
     @include('sweetalert::alert')

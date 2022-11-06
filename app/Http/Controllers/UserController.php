@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Imports\UserImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -83,12 +84,40 @@ class UserController extends Controller
             'file' => 'required|file'
         ]);
         if($validator->fails()){
-            return back()->with('failed',$validator->errors());
+            Alert::error('Operasi Gagal', $validator->errors());
+            return back();
         }else{
             $path1 = $request->file('file')->store('temp');
             $path=storage_path('app').'/'.$path1;
             Excel::import(new UserImport, $path);
-            return back()->with('import','file telah berhasil diimport');
+            Alert::success('Operasi Sukses', 'data berhasil di import');
+            return back();
         }
+    }
+    public function exportexcel(){
+        return Excel::download(new UserExport, 'userexport.xlsx');
+    }
+    public function downloadexcel(){
+        $file= public_path(). "/excel/formatuser.xlsx";
+        return response()->download($file);
+    }
+
+    public function previouspage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.user.index',compact('data'));
+    }
+    public function gotopage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.user.index',compact('data'));
+    }
+    public function nextpage(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($request->input('link') . "&token=" . Session::get('token'));
+        return view('dashboard.master.user.index',compact('data'));
     }
 }

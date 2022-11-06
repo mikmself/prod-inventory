@@ -47,11 +47,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Nama Karyawan</label>
-                    <select id="selectkaryawan" name="id_karyawan" required>
+                    <label>Nama User</label>
+                    <select id="selectuser" name="id_user" required>
                         <option ></option>
-                        @foreach ($karyawan['data'] as $karyawan)
-                            <option value="{{$karyawan['id']}}">{{$karyawan['nama']}}</option>
+                        @foreach ($user['data'] as $user)
+                            <option value="{{$user['id']}}">{{$user['firstname']}} {{$user['lastname']}}</option>
                         @endforeach
                     </select>
                 </div>

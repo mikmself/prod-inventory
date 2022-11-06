@@ -26,8 +26,8 @@ class HomeController extends Controller
         return view('dashboard.pengaturan.index',compact('user'));
     }
     public function indexBarangKeluar(){
-        $karyawan = Http::get($this->api."/user/nonauth/indexkaryawan");
-        return view('feuser.barangkeluar',compact('karyawan'));
+        $user = Http::get($this->api."/user/nonauth/indexuser");
+        return view('feuser.barangkeluar',compact('user'));
     }
     public function barangKeluar(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangkeluar",$request->all());
@@ -42,11 +42,11 @@ class HomeController extends Controller
 
     public function indexBarangModalKeluar(){
         $datamentah = Http::get($this->api."/user/nonauth/indexbarang");
-        $karyawan = Http::get($this->api."/user/nonauth/indexkaryawan");
+        $user = Http::get($this->api."/user/nonauth/indexuser");
         $ruang = Http::get($this->api."/user/nonauth/indexruang");
         $collection = collect($datamentah->json()['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        return view('feuser.barangmodalkeluar',compact('databarang','karyawan','ruang'));
+        return view('feuser.barangmodalkeluar',compact('databarang','user','ruang'));
     }
     public function barangModalKeluar(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalkeluar",$request->all());
@@ -61,11 +61,11 @@ class HomeController extends Controller
 
     public function indexBarangModalPinjam(){
         $datamentah = Http::get($this->api."/user/nonauth/indexbarang");
-        $karyawan = Http::get($this->api."/user/nonauth/indexkaryawan");
+        $user = Http::get($this->api."/user/nonauth/indexuser");
         $ruang = Http::get($this->api."/user/nonauth/indexruang");
         $collection = collect($datamentah->json()['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        return view('feuser.barangmodalpinjam',compact('databarang','karyawan','ruang'));
+        return view('feuser.barangmodalpinjam',compact('databarang','user','ruang'));
     }
     public function barangModalPinjam(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalpinjam",$request->all());

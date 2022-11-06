@@ -10,9 +10,9 @@
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="mb-4">Tambah data masal</h5>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{route('userimportexcel')}}" method="POST" enctype="multipart/form-data">
           @csrf
-          <small>Download contoh file : <a href="{{route('downloadexcel')}}">Download</a></small>
+          <small>Download contoh file : <a href="{{route('userdownloadexcel')}}">Download</a></small>
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="file">File (Excel)</label>
             <div class="col-sm-10">

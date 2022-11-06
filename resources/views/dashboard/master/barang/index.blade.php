@@ -1,9 +1,7 @@
 @extends('layouts/contentNavbarLayout')
 @section('title', 'Barang')
 @section('content')
-<!-- Striped Rows -->
 <div class="card">
-
   <h5 class="card-header d-flex justify-content-between align-items-center">
     Barang
     <div>
@@ -33,25 +31,57 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0" id="semuadatabarang">
-        @foreach ($data['data'] as $data)
+        @foreach ($data['data']['data'] as $barang)
         <tr>
-            <td class="margin-left">{{$data['id']}}</td>
-            <td>{{$data['nama']}}</td>
-            <td>{{$data['kategori']['nama_kategori']}}</td>
-            <td>{{$data['stok']}}</td>
-            <td>{{$data['satuan']}}</td>
-            <td>{{ \Carbon\Carbon::parse($data['updated_at'])->diffForHumans()}}</td>
+            <td class="margin-left">{{$barang['id']}}</td>
+            <td>{{$barang['nama']}}</td>
+            <td>{{$barang['kategori']['nama_kategori']}}</td>
+            <td>{{$barang['stok']}}</td>
+            <td>{{$barang['satuan']}}</td>
+            <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
             <td class="action">
-                <a href="{{route('editbarang',$data['id'])}}" class="btn btn-warning">Ubah</a>
-                <a href="{{route('deletebarang',$data['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+                <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
+                <a href="{{route('deletebarang',$barang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
         @endforeach
       </tbody>
     </table>
   </div>
+  <div class="card-footer text-center d-flex justify-content-between align-items-center">
+    <form action="{{route('previouspagebarang')}}" method="post">
+      @csrf
+      <input type="hidden" name="link" value="{{$data['data']['prev_page_url']}}">
+      @if ($data['data']['prev_page_url'] == null)
+        <button class="btn btn-dark pull-left visually-hidden" type="submit">Previous</button>
+      @else
+        <button class="btn btn-dark pull-left" type="submit">Previous</button>
+      @endif
+    </form>
+    @if ($data['data']['links'][2]['url'] == null)
+
+    @else
+    <div class="container d-flex justify-content-evenly align-items-center">
+      @for($i = 1; $i<=count($data['data']['links'])-1;$i++)
+        <form action="{{route('gotopagebarang')}}" method="post">
+          @csrf
+          <input type="hidden" name="link" value="{{$data['data']['links'][$i]['url']}}">
+          <button type="submit" class="bg-transparent">{{$i}}</button>
+        </form>
+      @endfor
+    </div>
+    @endif
+    <form action="{{route('nextpagebarang')}}" method="post">
+      @csrf
+      <input type="hidden" name="link" value="{{$data['data']['next_page_url']}}">
+      @if ($data['data']['next_page_url'] == null)
+        <button class="btn btn-warning pull-right visually-hidden" type="submit">Next</button>
+      @else
+        <button class="btn btn-warning pull-right" type="submit">Next</button>
+      @endif
+    </form>
+  </div>
 </div>
-<!--/ Striped Rows -->
 <script type="text/javascript">
 try {
     // Checkbox Kategori

@@ -2,12 +2,12 @@
 
 namespace App\Exports;
 
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class KaryawanExport implements FromArray, WithHeadings
+class UserExport implements FromArray, WithHeadings
 {
     public $api = "https://restinventory.bakaranproject.com";
     public function getToken(){
@@ -21,17 +21,18 @@ class KaryawanExport implements FromArray, WithHeadings
     {
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->get($this->api."/barang" . $this->getToken());
-        // dd($data['data']);
+        ])->get($this->api."/user" . $this->getToken());
         $datas = [];
         foreach ($data['data'] as $dataa) {
             $datamentah = [
                 $dataa['id'],
-                $dataa['nama'],
-                $dataa['kategori']['nama_kategori'],
-                $dataa['stok'],
-                $dataa['satuan'],
-                $dataa['updated_at']
+                $dataa['firstname'],
+                $dataa['lastname'],
+                $dataa['unitkerja']['nama'],
+                $dataa['nip'],
+                $dataa['email'],
+                $dataa['notelp'],
+                $dataa['updated_at'],
             ];
             array_push($datas,$datamentah);
         }
@@ -41,13 +42,13 @@ class KaryawanExport implements FromArray, WithHeadings
     {
         return [
             'ID User',
-            'ID Karyawan',
             'First Name',
             'Last Name',
             'Unit Kerja',
             'NIP',
             'Email',
             'Nomor Telephone',
+            'Terakhir Di Update'
         ];
     }
 }
