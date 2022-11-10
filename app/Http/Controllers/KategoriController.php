@@ -33,6 +33,18 @@ class KategoriController extends Controller
             return back();
         }
     }
+    public function search(Request $request)
+    {
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/kategori/search".$this->getToken(),$request->all());
+        if($data['code'] == 1){
+            return view('dashboard.master.kategori.index',compact('data'));
+        }else{
+            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            return back();
+        }
+    }
     public function edit($id)
     {
         $data = Http::withHeaders([
@@ -60,10 +72,10 @@ class KategoriController extends Controller
         ])->delete($this->api."/kategori/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
             Alert::success('Operasi Sukses', $data['message']);
-            return back();
+            return redirect(route('indexkategori'));
         }else{
             Alert::error('Operasi Gagal', $data['message']);
-            return back();
+            return redirect(route('indexkategori'));
         }
     }
 

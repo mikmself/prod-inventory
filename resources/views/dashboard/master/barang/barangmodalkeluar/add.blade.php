@@ -22,7 +22,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectruang" name="id_ruang" required>
                 <option ></option>
-                @foreach ($dataruang['data'] as $ruang)
+                @foreach ($dataruang['data']['data'] as $ruang)
                     <option value="{{$ruang['id']}}">{{$ruang['nama']}}</option>
                 @endforeach
               </select>
@@ -33,7 +33,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectuser" name="id_user" required>
                 <option ></option>
-                @foreach ($datauser['data'] as $user)
+                @foreach ($datauser['data']['data'] as $user)
                     <option value="{{$user['id']}}">{{$user['firstname'] . " " . $user['lastname']}}</option>
                 @endforeach
               </select>

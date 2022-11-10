@@ -34,7 +34,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectruang" name="id_ruang" required>
                 <option ></option>
-                @foreach ($dataruang['data'] as $ruang)
+                @foreach ($dataruang['data']['data'] as $ruang)
                     <option value="{{$ruang['id']}}">{{$ruang['nama']}}</option>
                 @endforeach
               </select>

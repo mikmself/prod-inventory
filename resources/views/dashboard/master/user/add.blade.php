@@ -53,7 +53,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
                 <option ></option>
-                @foreach ($data['data'] as $data)
+                @foreach ($data['data']['data'] as $data)
                     <option value="{{$data['id']}}">{{$data['nama']}}</option>
                 @endforeach
               </select>

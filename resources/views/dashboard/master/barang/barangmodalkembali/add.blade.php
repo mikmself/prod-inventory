@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach ($data['data'] as $data)
+        @foreach ($data['data']['data'] as $data)
         <tr>
           <td class="margin-left">{{$data['id']}}</td>
           <td>{{$data['barang']['nama']}}</td>

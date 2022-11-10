@@ -66,7 +66,7 @@
         <form action="{{route('gotopagebarang')}}" method="post">
           @csrf
           <input type="hidden" name="link" value="{{$data['data']['links'][$i]['url']}}">
-          <button type="submit" class="bg-transparent">{{$i}}</button>
+          <button type="submit" class="bg-transparent border-transparent">{{$i}}</button>
         </form>
       @endfor
     </div>

@@ -43,12 +43,15 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
         Route::prefix('barang')->group(function(){
             Route::post('/getbarangwithkagetgori',[BarangController::class,'getBarangWithKagetgori']);
             Route::get('/getallbarang',[BarangController::class,'getAllBarang']);
-
             Route::get('/',[BarangController::class,'index'])->name('indexbarang');
-            Route::get('/fisik',[BarangController::class,'indexBarangFisik'])->name('indexbarangfisik');
-
             Route::get('/create',[BarangController::class,'create'])->name('createbarang');
             Route::post('/store',[BarangController::class,'store'])->name('storebarang');
+            Route::post('/search',[BarangController::class,'search'])->name('searchbarang');
+
+            Route::get('/fisik',[BarangController::class,'indexBarangFisik'])->name('indexbarangfisik');
+            Route::post('/previouspagebarangfisik',[BarangController::class,'previouspagebarangfisik'])->name('previouspagebarangfisik');
+            Route::post('/gotopagebarangfisik',[BarangController::class,'gotopagebarangfisik'])->name('gotopagebarangfisik');
+            Route::post('/nextpagebarangfisik',[BarangController::class,'nextpagebarangfisik'])->name('nextpagebarangfisik');
 
             Route::get('/indexbarangmasuk',[BarangController::class,'indexBarangMasuk'])->name('indexbarangmasuk');
             Route::get('/addbarangmasuk',[BarangController::class,'addBarangMasuk'])->name('addbarangmasuk');
@@ -111,6 +114,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[KategoriController::class,'edit'])->name('editkategori');
             Route::post('/update/{id}',[KategoriController::class,'update'])->name('updatekategori');
             Route::get('/delete/{id}',[KategoriController::class,'destroy'])->name('deletekategori');
+            Route::post('/search',[KategoriController::class,'search'])->name('searchkategori');
 
             Route::post('/previouspage',[KategoriController::class,'previouspage'])->name('previouspagekategori');
             Route::post('/gotopage',[KategoriController::class,'gotopage'])->name('gotopagekategori');
@@ -123,6 +127,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[UnitKerjaController::class,'edit'])->name('editunitkerja');
             Route::post('/update/{id}',[UnitKerjaController::class,'update'])->name('updateunitkerja');
             Route::get('/delete/{id}',[UnitKerjaController::class,'destroy'])->name('deleteunitkerja');
+            Route::post('/search',[UnitKerjaController::class,'search'])->name('searchunitkerja');
 
             Route::post('/previouspage',[UnitKerjaController::class,'previouspage'])->name('previouspageunitkerja');
             Route::post('/gotopage',[UnitKerjaController::class,'gotopage'])->name('gotopageunitkerja');
@@ -135,6 +140,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[PengaturanController::class,'edit'])->name('editpengaturan');
             Route::post('/update/{id}',[PengaturanController::class,'update'])->name('updatepengaturan');
             Route::get('/delete/{id}',[PengaturanController::class,'destroy'])->name('deletepengaturan');
+            Route::post('/search',[PengaturanController::class,'search'])->name('searchpengaturan');
 
             Route::post('/previouspage',[PengaturanController::class,'previouspage'])->name('previouspagepengaturan');
             Route::post('/gotopage',[PengaturanController::class,'gotopage'])->name('gotopagepengaturan');
@@ -147,6 +153,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[RuangController::class,'edit'])->name('editruang');
             Route::post('/update/{id}',[RuangController::class,'update'])->name('updateruang');
             Route::get('/delete/{id}',[RuangController::class,'destroy'])->name('deleteruang');
+            Route::post('/search',[RuangController::class,'search'])->name('searchruang');
 
             Route::post('/previouspage',[RuangController::class,'previouspage'])->name('previouspageruang');
             Route::post('/gotopage',[RuangController::class,'gotopage'])->name('gotopageruang');
@@ -159,6 +166,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[SuplayerController::class,'edit'])->name('editsuplayer');
             Route::post('/update/{id}',[SuplayerController::class,'update'])->name('updatesuplayer');
             Route::get('/delete/{id}',[SuplayerController::class,'destroy'])->name('deletesuplayer');
+            Route::post('/search',[SuplayerController::class,'search'])->name('searchsuplayer');
 
             Route::post('/previouspage',[SuplayerController::class,'previouspage'])->name('previouspagesuplayer');
             Route::post('/gotopage',[SuplayerController::class,'gotopage'])->name('gotopagesuplayer');
@@ -171,6 +179,7 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/edit/{id}',[UserController::class,'edit'])->name('edituser');
             Route::post('/update/{id}',[UserController::class,'update'])->name('updateuser');
             Route::get('/delete/{id}',[UserController::class,'destroy'])->name('deleteuser');
+            Route::post('/search',[UserController::class,'search'])->name('searchuser');
 
             Route::post('/importexcel',[UserController::class,'importexcel'])->name('userimportexcel');
             Route::get('/downloadexcel',[UserController::class,'downloadexcel'])->name('userdownloadexcel');

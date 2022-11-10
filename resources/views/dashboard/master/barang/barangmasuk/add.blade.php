@@ -16,7 +16,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectkategori" name="id_kategori" required>
                 <option ></option>
-                @foreach ($datakategori['data'] as $kategori)
+                @foreach ($datakategori['data']['data'] as $kategori)
                     <option value="{{$kategori['id']}}">{{$kategori['nama_kategori']}}</option>
                 @endforeach
               </select>
@@ -36,7 +36,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectsuplayer" name="id_suplayer" required>
                 <option ></option>
-                @foreach ($datasuplayer['data'] as $suplayer)
+                @foreach ($datasuplayer['data']['data'] as $suplayer)
                     <option value="{{$suplayer['id']}}">{{$suplayer['nama']}}</option>
                 @endforeach
               </select>

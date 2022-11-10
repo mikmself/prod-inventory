@@ -28,7 +28,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
                 <option ></option>
-                @foreach ($unitkerja['data'] as $unitkerja)
+                @foreach ($unitkerja['data']['data'] as $unitkerja)
                     <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == $data['data']['id_unitkerja'] ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
                 @endforeach
               </select>

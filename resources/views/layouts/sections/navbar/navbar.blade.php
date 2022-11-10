@@ -35,21 +35,143 @@ $navbarDetached = ($navbarDetached ?? '');
       @endif
 
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        <!-- Search -->
-        <div class="navbar-nav align-items-center">
-          <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+        @php
+            $indexbarang = request()->routeIs('indexbarang');
+            $previouspagebarang = request()->routeIs('previouspagebarang');
+            $gotopagebarang = request()->routeIs('gotopagebarang');
+            $nextpagebarang = request()->routeIs('nextpagebarang');
+            $searchbarang = request()->routeIs('searchbarang');
+
+            $indexkategori = request()->routeIs('indexkategori');
+            $previouspagekategori = request()->routeIs('previouspagekategori');
+            $gotopagekategori = request()->routeIs('gotopagekategori');
+            $nextpagekategori = request()->routeIs('nextpagekategori');
+            $searchkategori = request()->routeIs('searchkategori');
+
+            $indexunitkerja = request()->routeIs('indexunitkerja');
+            $previouspageunitkerja = request()->routeIs('previouspageunitkerja');
+            $gotopageunitkerja = request()->routeIs('gotopageunitkerja');
+            $nextpageunitkerja = request()->routeIs('nextpageunitkerja');
+            $searchunitkerja = request()->routeIs('searchunitkerja');
+            
+            $indexruang = request()->routeIs('indexruang');
+            $previouspageruang = request()->routeIs('previouspageruang');
+            $gotopageruang = request()->routeIs('gotopageruang');
+            $nextpageruang = request()->routeIs('nextpageruang');
+            $searchruang = request()->routeIs('searchruang');
+
+            $indexpengaturan = request()->routeIs('indexpengaturan');
+            $previouspagepengaturan = request()->routeIs('previouspagepengaturan');
+            $gotopagepengaturan = request()->routeIs('gotopagepengaturan');
+            $nextpagepengaturan = request()->routeIs('nextpagepengaturan');
+            $searchpengaturan = request()->routeIs('searchpengaturan');
+
+            $indexsuplayer = request()->routeIs('indexsuplayer');
+            $previouspagesuplayer = request()->routeIs('previouspagesuplayer');
+            $gotopagesuplayer = request()->routeIs('gotopagesuplayer');
+            $nextpagesuplayer = request()->routeIs('nextpagesuplayer');
+            $searchsuplayer = request()->routeIs('searchsuplayer');
+
+            $indexuser = request()->routeIs('indexuser');
+            $previouspageuser = request()->routeIs('previouspageuser');
+            $gotopageuser = request()->routeIs('gotopageuser');
+            $nextpageuser = request()->routeIs('nextpageuser');
+            $searchuser = request()->routeIs('searchuser');
+        @endphp
+        @if (
+            $indexbarang || $previouspagebarang || $gotopagebarang || $nextpagebarang || $searchbarang || 
+            $indexkategori || $previouspagekategori || $gotopagekategori || $nextpagekategori || $searchkategori || 
+            $indexruang || $previouspageruang || $gotopageruang || $nextpageruang || $searchruang || 
+            $indexpengaturan || $previouspagepengaturan || $gotopagepengaturan || $nextpagepengaturan || $searchpengaturan || 
+            $indexsuplayer || $previouspagesuplayer || $gotopagesuplayer || $nextpagesuplayer || $searchsuplayer || 
+            $indexunitkerja || $previouspageunitkerja || $gotopageunitkerja || $nextpageunitkerja || $searchunitkerja || 
+            $indexuser || $previouspageuser || $gotopageuser || $nextpageuser || $searchuser
+        )
+          @if ($indexbarang || $previouspagebarang || $gotopagebarang || $nextpagebarang || $searchbarang)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchbarang')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
           </div>
-        </div>
-        <!-- /Search -->
+          @endif
+
+          @if ($indexkategori || $previouspagekategori || $gotopagekategori || $nextpagekategori || $searchkategori)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchkategori')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+
+          @if ($indexruang || $previouspageruang || $gotopageruang || $nextpageruang || $searchruang)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchruang')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+
+          @if ($indexpengaturan || $previouspagepengaturan || $gotopagepengaturan || $nextpagepengaturan || $searchpengaturan)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchpengaturan')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+
+          @if ($indexsuplayer || $previouspagesuplayer || $gotopagesuplayer || $nextpagesuplayer || $searchsuplayer)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchsuplayer')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+
+          @if ($indexunitkerja || $previouspageunitkerja || $gotopageunitkerja || $nextpageunitkerja || $searchunitkerja)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchunitkerja')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+
+          @if ($indexuser || $previouspageuser || $gotopageuser || $nextpageuser || $searchuser)
+          <div class="navbar-nav align-items-center">
+            <form action="{{route('searchuser')}}" method="post">
+              <div class="nav-item d-flex align-items-center">
+                  @csrf
+                  <input type="text" class="form-control border-0 shadow-none" name="key" placeholder="Search..." aria-label="Search...">
+                  <button type="submit" class="btn btn-secondary"><i class="bx bx-search fs-4 lh-0"></i></button>
+              </div>
+            </form>
+          </div>
+          @endif
+        @endif
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-
-          <!-- Place this tag where you want the button to render. -->
-          <li class="nav-item lh-1 me-3">
-            <a class="github-button" href="https://github.com/themeselection/sneat-html-laravel-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-laravel-admin-template-free on GitHub">Star</a>
-          </li>
-
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

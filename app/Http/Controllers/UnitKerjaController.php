@@ -14,7 +14,7 @@ class UnitKerjaController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/unitkerja" . $this->getToken());
-        dd($data['data']);
+        // dd($data['data']);
         return view('dashboard.master.unitkerja.index',compact('data'));
     }
     public function create()
@@ -31,6 +31,18 @@ class UnitKerjaController extends Controller
             return back();
         }else{
             Alert::error('Operasi Gagal', $data['message']);
+            return back();
+        }
+    }
+    public function search(Request $request)
+    {
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/unitkerja/search".$this->getToken(),$request->all());
+        if($data['code'] == 1){
+            return view('dashboard.master.unitkerja.index',compact('data'));
+        }else{
+            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
             return back();
         }
     }
@@ -61,10 +73,10 @@ class UnitKerjaController extends Controller
         ])->delete($this->api."/unitkerja/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
             Alert::success('Operasi Sukses', $data['message']);
-            return back();
+            return redirect(route('indexunitkerja'));
         }else{
             Alert::error('Operasi Gagal', $data['message']);
-            return back();
+            return redirect(route('indexunitkerja'));
         }
     }
 
@@ -78,6 +90,7 @@ class UnitKerjaController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
+        // dd($data['data']);
         return view('dashboard.master.unitkerja.index',compact('data'));
     }
     public function nextpage(Request $request){

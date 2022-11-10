@@ -40,6 +40,19 @@ class UserController extends Controller
             return back();
         }
     }
+    public function search(Request $request)
+    {
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/user/search".$this->getToken(),$request->all());
+        // dd($data['data']);
+        if($data['code'] == 1){
+            return view('dashboard.master.user.index',compact('data'));
+        }else{
+            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            return back();
+        }
+    }
     public function edit($id)
     {
         $unitkerja = Http::withHeaders([
@@ -73,10 +86,10 @@ class UserController extends Controller
         ])->delete($this->api."/user/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
             Alert::success('Operasi Sukses', $data['message']);
-            return back();
+            return redirect(route('indexuser'));
         }else{
             Alert::error('Operasi Gagal', $data['message']);
-            return back();
+            return redirect(route('indexuser'));
         }
     }
     public function importexcel(Request $request){

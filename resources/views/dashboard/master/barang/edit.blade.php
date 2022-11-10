@@ -22,7 +22,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectkategori" name="id_kategori" required>
                 <option ></option>
-                @foreach ($datakategori['data'] as $kategori)
+                @foreach ($datakategori['data']['data'] as $kategori)
                     <option {{$data['data']['id_kategori'] == $kategori['id'] ? "selected" : ""}} value="{{$kategori['id']}}">{{$kategori['nama_kategori']}}</option>
                 @endforeach
               </select>
