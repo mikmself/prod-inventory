@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class PengaturanController extends Controller
 {
@@ -27,10 +26,10 @@ class PengaturanController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/pengaturan/store".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -42,7 +41,7 @@ class PengaturanController extends Controller
         if($data['code'] == 1){
             return view('dashboard.master.pengaturan.index',compact('data'));
         }else{
-            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            toast('data tidak ditemukan','warning');
             return back();
         }
     }
@@ -74,10 +73,10 @@ class PengaturanController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/pengaturan/update/".$id.$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -87,21 +86,15 @@ class PengaturanController extends Controller
             'apikey' => $this->getApiKey()
         ])->delete($this->api."/pengaturan/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return redirect(route('indexpengaturan'));
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return redirect(route('indexpengaturan'));
         }
     }
 
     public function previouspage(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.pengaturan.index',compact('data'));
-    }
-    public function gotopage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));

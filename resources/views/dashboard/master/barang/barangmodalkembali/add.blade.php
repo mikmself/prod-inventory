@@ -21,14 +21,14 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach ($data['data']['data'] as $data)
+        @foreach ($data as $barangkembali)
         <tr>
-          <td class="margin-left">{{$data['id']}}</td>
-          <td>{{$data['barang']['nama']}}</td>
-          <td>{{$data['barangfisik']['kode']}}</td>
-          <td>{{ \Carbon\Carbon::parse($data['tanggal_keluar'])->isoFormat('dddd, D MMMM Y')}}</td>
-          <td>{{ \Carbon\Carbon::parse($data['tanggal_kembali'])->isoFormat('dddd, D MMMM Y')}}</td>
-          <td><a href="{{route('barangmodalkembali',$data['id'])}}" class="btn btn-warning">ACC</a></td>
+          <td class="margin-left">{{$barangkembali['id']}}</td>
+          <td>{{$barangkembali['barang']['nama']}}</td>
+          <td>{{$barangkembali['barangfisik']['kode']}}</td>
+          <td>{{ \Carbon\Carbon::parse($barangkembali['tanggal_keluar'])->isoFormat('dddd, D MMMM Y')}}</td>
+          <td>{{ \Carbon\Carbon::parse($barangkembali['tanggal_kembali'])->isoFormat('dddd, D MMMM Y')}}</td>
+          <td><a href="{{route('barangmodalkembali',$barangkembali['id'])}}" class="btn btn-warning">ACC</a></td>
         </tr>
         @endforeach
       </tbody>

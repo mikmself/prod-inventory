@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="selectkategori">Suplayer</label>
+            <label class="col-sm-2 col-form-label" for="selectsuplayer">Suplayer</label>
             <div class="col-sm-10">
               <select class="form-control" id="selectsuplayer" name="id_suplayer" required>
                 <option ></option>

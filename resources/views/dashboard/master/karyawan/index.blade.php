@@ -45,19 +45,7 @@
         <button class="btn btn-dark pull-left" type="submit">Previous</button>
       @endif
     </form>
-    @if ($data['data']['links'][2]['url'] == null)
-
-    @else
-    <div class="container d-flex justify-content-evenly align-items-center">
-      @for($i = 1; $i<=count($data['data']['links'])-1;$i++)
-        <form action="{{route('gotopagkaryawan')}}" method="post">
-          @csrf
-          <input type="hidden" name="link" value="{{$data['data']['links'][$i]['url']}}">
-          <button type="submit" class="bg-transparent border-transparent">{{$i}}</button>
-        </form>
-      @endfor
-    </div>
-    @endif
+    
     <form action="{{route('nextpagkaryawan')}}" method="post">
       @csrf
       <input type="hidden" name="link" value="{{$data['data']['next_page_url']}}">

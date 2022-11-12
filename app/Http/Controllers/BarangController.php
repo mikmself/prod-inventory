@@ -9,7 +9,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
 {
@@ -25,10 +24,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/indexconfrim" . $this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -45,10 +44,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/store".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -60,7 +59,7 @@ class BarangController extends Controller
         if($data['code'] == 1){
             return view('dashboard.master.barang.index',compact('data'));
         }else{
-            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            toast('data tidak ditemukan','warning');
             return back();
         }
     }
@@ -80,10 +79,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/update/".$id.$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -93,20 +92,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->delete($this->api."/barang/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return redirect(route('indexbarang'));
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return redirect(route('indexbarang'));
         }
     }
     public function previouspage(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.index',compact('data'));
-    }
-    public function gotopage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -127,12 +120,6 @@ class BarangController extends Controller
         return view('dashboard.master.barang.fisik',compact('data'));
     }
     public function previouspagebarangfisik(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.index',compact('data'));
-    }
-    public function gotopagebarangfisik(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -168,20 +155,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/barangmasuk".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
     public function previouspagebarangmasuk(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.barangmasuk.index',compact('data'));
-    }
-    public function gotopagebarangmasuk(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -236,11 +217,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/barangkeluar".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            // Alert::success('Operasi Sukses', $data['message']);
             toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -250,20 +230,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/confirmbarangkeluar/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
     public function previouspagebarangkeluar(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.barangkeluar.index',compact('data'));
-    }
-    public function gotopagebarangkeluar(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -301,10 +275,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/barangmodalkeluar".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -314,20 +288,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/confirmbarangmodalkeluar/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
     public function previouspagebarangmodalkeluar(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.barangmodalkeluar.index',compact('data'));
-    }
-    public function gotopagebarangmodalkeluar(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -366,10 +334,10 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/barangmodalpinjam".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
@@ -379,20 +347,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/confirmbarangmodalpinjam/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
     public function previouspagebarangmodalpinjam(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.barangmodalpinjam.index',compact('data'));
-    }
-    public function gotopagebarangmodalpinjam(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -427,20 +389,14 @@ class BarangController extends Controller
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/barangmodalkembali/id=$id".$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'warning');
             return back();
         }
     }
     public function previouspagebarangmodalkembali(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.barangmodalkembali.index',compact('data'));
-    }
-    public function gotopagebarangmodalkembali(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
@@ -459,13 +415,13 @@ class BarangController extends Controller
             'file' => 'required|file'
         ]);
         if($validator->fails()){
-            Alert::error('Operasi Gagal', $validator->errors());
+            toast('gagal, isi file sesuai yang diminta!','warning');
             return back();
         }else{
             $path1 = $request->file('file')->store('temp');
             $path=storage_path('app').'/'.$path1;
             Excel::import(new BarangImport, $path);
-            Alert::success('Operasi Sukses', 'data berhasil di import');
+            toast('data berhasil di import','success');
             return back();
         }
     }
@@ -481,7 +437,7 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/fisik" . $this->getToken());
-        $collection = collect($data->json()['data']);
+        $collection = collect($data->json()['data']['data']);
         $datafisik = $collection->whereIn('id_barang',$idbarang)->whereIn('status_pengambilan',0);
         foreach ($datafisik as $barangfisik) {
             echo "<option value=\"{$barangfisik['id']}\">{$barangfisik['kode']}</option>";
@@ -492,7 +448,7 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang" . $this->getToken());
-        $collection = collect($data->json()['data']);
+        $collection = collect($data->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',$idkategori);
         foreach ($databarang as $barang) {
             echo "<option value=\"{$barang['id']}\">{$barang['nama']}</option>";
@@ -503,7 +459,7 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang" . $this->getToken());
-        $collection = collect($data->json()['data']);
+        $collection = collect($data->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',$idkategori);
         return view('_partials.databarang',compact('databarang'));
     }
@@ -512,7 +468,7 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang" . $this->getToken());
-        $databarang = $data['data'];
+        $databarang = $data['data']['data'];
         return view('_partials.databarang',compact('databarang'));
     }
     public function getInputBarangKeluar(){

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -33,10 +32,10 @@ class UserController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/user/store".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -45,11 +44,10 @@ class UserController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->post($this->api."/user/search".$this->getToken(),$request->all());
-        // dd($data['data']);
         if($data['code'] == 1){
             return view('dashboard.master.user.index',compact('data'));
         }else{
-            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            toast('data tidak ditemukan','warning');
             return back();
         }
     }
@@ -68,14 +66,11 @@ class UserController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->post($this->api."/user/update/".$id.$this->getToken(),$request->all());
-        Session::put('firstname',$data['data']['firstname']);
-        Session::put('lastname',$data['data']['lastname']);
-        Session::put('email',$data['data']['email']);
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -85,10 +80,10 @@ class UserController extends Controller
             'apikey' => $this->getApiKey()
         ])->delete($this->api."/user/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return redirect(route('indexuser'));
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return redirect(route('indexuser'));
         }
     }
@@ -97,13 +92,13 @@ class UserController extends Controller
             'file' => 'required|file'
         ]);
         if($validator->fails()){
-            Alert::error('Operasi Gagal', $validator->errors());
+            toast('data yang diinputkan tidak sesuai!','error');
             return back();
         }else{
             $path1 = $request->file('file')->store('temp');
             $path=storage_path('app').'/'.$path1;
             Excel::import(new UserImport, $path);
-            Alert::success('Operasi Sukses', 'data berhasil di import');
+            toast('data berhasil di import','success');
             return back();
         }
     }
@@ -116,12 +111,6 @@ class UserController extends Controller
     }
 
     public function previouspage(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.user.index',compact('data'));
-    }
-    public function gotopage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));

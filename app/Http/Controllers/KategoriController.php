@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriController extends Controller
 {
@@ -26,10 +25,10 @@ class KategoriController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/kategori/store".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -41,7 +40,7 @@ class KategoriController extends Controller
         if($data['code'] == 1){
             return view('dashboard.master.kategori.index',compact('data'));
         }else{
-            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            toast('data tidak ditemukan','warning');
             return back();
         }
     }
@@ -58,10 +57,10 @@ class KategoriController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/kategori/update/".$id.$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -71,21 +70,15 @@ class KategoriController extends Controller
             'apikey' => $this->getApiKey()
         ])->delete($this->api."/kategori/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return redirect(route('indexkategori'));
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return redirect(route('indexkategori'));
         }
     }
 
     public function previouspage(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.kategori.index',compact('data'));
-    }
-    public function gotopage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));

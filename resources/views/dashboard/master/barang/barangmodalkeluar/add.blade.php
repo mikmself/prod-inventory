@@ -33,7 +33,7 @@
             <div class="col-sm-10">
               <select class="form-control" id="selectuser" name="id_user" required>
                 <option ></option>
-                @foreach ($datauser['data']['data'] as $user)
+                @foreach ($datauser['data'] as $user)
                     <option value="{{$user['id']}}">{{$user['firstname'] . " " . $user['lastname']}}</option>
                 @endforeach
               </select>

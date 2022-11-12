@@ -20,6 +20,7 @@ class BarangImport implements ToCollection, WithHeadingRow
 
     public function collection(Collection $rows)
     {
+        // dd($rows);
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->post($this->api."/barang/importexcel".$this->getToken(),[

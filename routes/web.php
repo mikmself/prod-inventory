@@ -50,14 +50,12 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
 
             Route::get('/fisik',[BarangController::class,'indexBarangFisik'])->name('indexbarangfisik');
             Route::post('/previouspagebarangfisik',[BarangController::class,'previouspagebarangfisik'])->name('previouspagebarangfisik');
-            Route::post('/gotopagebarangfisik',[BarangController::class,'gotopagebarangfisik'])->name('gotopagebarangfisik');
             Route::post('/nextpagebarangfisik',[BarangController::class,'nextpagebarangfisik'])->name('nextpagebarangfisik');
 
             Route::get('/indexbarangmasuk',[BarangController::class,'indexBarangMasuk'])->name('indexbarangmasuk');
             Route::get('/addbarangmasuk',[BarangController::class,'addBarangMasuk'])->name('addbarangmasuk');
             Route::post('/barangmasuk',[BarangController::class,'barangMasuk'])->name('barangmasuk');
             Route::post('/previouspagebarangmasuk',[BarangController::class,'previouspagebarangmasuk'])->name('previouspagebarangmasuk');
-            Route::post('/gotopagebarangmasuk',[BarangController::class,'gotopagebarangmasuk'])->name('gotopagebarangmasuk');
             Route::post('/nextpagebarangmasuk',[BarangController::class,'nextpagebarangmasuk'])->name('nextpagebarangmasuk');
 
             Route::get('/indexbarangkeluar',[BarangController::class,'indexBarangKeluar'])->name('indexbarangkeluar');
@@ -67,7 +65,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/confirmbarangkeluar/{id}',[BarangController::class,'confirmBarangKeluar'])->name('confirmbarangkeluar');
             Route::get('/getinputbarangkeluar',[BarangController::class,'getInputBarangKeluar'])->name('getInputBarangKeluar');
             Route::post('/previouspagebarangkeluar',[BarangController::class,'previouspagebarangkeluar'])->name('previouspagebarangkeluar');
-            Route::post('/gotopagebarangkeluar',[BarangController::class,'gotopagebarangkeluar'])->name('gotopagebarangkeluar');
             Route::post('/nextpagebarangkeluar',[BarangController::class,'nextpagebarangkeluar'])->name('nextpagebarangkeluar');
 
             Route::get('/indexbarangmodalkeluar',[BarangController::class,'indexBarangModalKeluar'])->name('indexbarangmodalkeluar');
@@ -75,7 +72,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/barangmodalkeluar',[BarangController::class,'barangModalKeluar'])->name('barangmodalkeluar');
             Route::get('/confirmbarangmodalkeluar/{id}',[BarangController::class,'confirmBarangModalKeluar'])->name('confirmbarangmodalkeluar');
             Route::post('/previouspagebarangmodalkeluar',[BarangController::class,'previouspagebarangmodalkeluar'])->name('previouspagebarangmodalkeluar');
-            Route::post('/gotopagebarangmodalkeluar',[BarangController::class,'gotopagebarangmodalkeluar'])->name('gotopagebarangmodalkeluar');
             Route::post('/nextpagebarangmodalkeluar',[BarangController::class,'nextpagebarangmodalkeluar'])->name('nextpagebarangmodalkeluar');
 
             Route::get('/indexbarangmodalpinjam',[BarangController::class,'indexBarangModalPinjam'])->name('indexbarangmodalpinjam');
@@ -83,14 +79,12 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/barangmodalpinjam',[BarangController::class,'barangModalPinjam'])->name('barangmodalpinjam');
             Route::get('/confirmbarangmodalpinjam/{id}',[BarangController::class,'confirmBarangModalPinjam'])->name('confirmbarangmodalpinjam');
             Route::post('/previouspagebarangmodalpinjam',[BarangController::class,'previouspagebarangmodalpinjam'])->name('previouspagebarangmodalpinjam');
-            Route::post('/gotopagebarangmodalpinjam',[BarangController::class,'gotopagebarangmodalpinjam'])->name('gotopagebarangmodalpinjam');
             Route::post('/nextpagebarangmodalpinjam',[BarangController::class,'nextpagebarangmodalpinjam'])->name('nextpagebarangmodalpinjam');
 
             Route::get('/indexbarangmodalkembali',[BarangController::class,'indexBarangModalKembali'])->name('indexbarangmodalkembali');
             Route::get('/addbarangmodalkembali',[BarangController::class,'addBarangModalKembali'])->name('addbarangmodalkembali');
             Route::get('/barangmodalkembali/id={id}',[BarangController::class,'barangModalKembali'])->name('barangmodalkembali');
             Route::post('/previouspagebarangmodalkembali',[BarangController::class,'previouspagebarangmodalkembali'])->name('previouspagebarangmodalkembali');
-            Route::post('/gotopagebarangmodalkembali',[BarangController::class,'gotopagebarangmodalkembali'])->name('gotopagebarangmodalkembali');
             Route::post('/nextpagebarangmodalkembali',[BarangController::class,'nextpagebarangmodalkembali'])->name('nextpagebarangmodalkembali');
 
             Route::get('/edit/{id}',[BarangController::class,'edit'])->name('editbarang');
@@ -104,7 +98,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/getbarangsesuaikategori',[BarangController::class,'getBarangSesuaiKategori'])->name('getbarangsesuaikategori');
 
             Route::post('/previouspage',[BarangController::class,'previouspage'])->name('previouspagebarang');
-            Route::post('/gotopage',[BarangController::class,'gotopage'])->name('gotopagebarang');
             Route::post('/nextpage',[BarangController::class,'nextpage'])->name('nextpagebarang');
         });
         Route::prefix('kategori')->group(function(){
@@ -117,7 +110,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/search',[KategoriController::class,'search'])->name('searchkategori');
 
             Route::post('/previouspage',[KategoriController::class,'previouspage'])->name('previouspagekategori');
-            Route::post('/gotopage',[KategoriController::class,'gotopage'])->name('gotopagekategori');
             Route::post('/nextpage',[KategoriController::class,'nextpage'])->name('nextpagekategori');
         });
         Route::prefix('unitkerja')->group(function(){
@@ -130,7 +122,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/search',[UnitKerjaController::class,'search'])->name('searchunitkerja');
 
             Route::post('/previouspage',[UnitKerjaController::class,'previouspage'])->name('previouspageunitkerja');
-            Route::post('/gotopage',[UnitKerjaController::class,'gotopage'])->name('gotopageunitkerja');
             Route::post('/nextpage',[UnitKerjaController::class,'nextpage'])->name('nextpageunitkerja');
         });
         Route::prefix('pengaturan')->group(function(){
@@ -143,7 +134,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/search',[PengaturanController::class,'search'])->name('searchpengaturan');
 
             Route::post('/previouspage',[PengaturanController::class,'previouspage'])->name('previouspagepengaturan');
-            Route::post('/gotopage',[PengaturanController::class,'gotopage'])->name('gotopagepengaturan');
             Route::post('/nextpage',[PengaturanController::class,'nextpage'])->name('nextpagepengaturan');
         });
         Route::prefix('ruang')->group(function(){
@@ -156,7 +146,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/search',[RuangController::class,'search'])->name('searchruang');
 
             Route::post('/previouspage',[RuangController::class,'previouspage'])->name('previouspageruang');
-            Route::post('/gotopage',[RuangController::class,'gotopage'])->name('gotopageruang');
             Route::post('/nextpage',[RuangController::class,'nextpage'])->name('nextpageruang');
         });
         Route::prefix('suplayer')->group(function(){
@@ -169,7 +158,6 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::post('/search',[SuplayerController::class,'search'])->name('searchsuplayer');
 
             Route::post('/previouspage',[SuplayerController::class,'previouspage'])->name('previouspagesuplayer');
-            Route::post('/gotopage',[SuplayerController::class,'gotopage'])->name('gotopagesuplayer');
             Route::post('/nextpage',[SuplayerController::class,'nextpage'])->name('nextpagesuplayer');
         });
         Route::prefix('user')->group(function(){
@@ -186,11 +174,11 @@ Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
             Route::get('/exportexcel',[UserController::class,'exportexcel'])->name('userexportexcel');
             
             Route::post('/previouspage',[UserController::class,'previouspage'])->name('previouspageuser');
-            Route::post('/gotopage',[UserController::class,'gotopage'])->name('gotopageuser');
             Route::post('/nextpage',[UserController::class,'nextpage'])->name('nextpageuser');
         });
     });
     Route::prefix('pengaturan')->group(function(){
         Route::get('/',[HomeController::class,'indexPengaturan'])->name('pengaturan');
+        Route::post('/update/{id}',[HomeController::class,'updatePengaturan'])->name('updatepengaturandashboard');
     });
 });

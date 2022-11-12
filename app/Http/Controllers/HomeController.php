@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -21,9 +20,26 @@ class HomeController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/user" . $this->getToken());
-        $collection = collect($data->json()['data']);
+        $collection = collect($data->json()['data']['data']);
         $user = $collection->whereIn('email',$email)->first();
         return view('dashboard.pengaturan.index',compact('user'));
+    }
+    public function updatePengaturan(Request $request, $id)
+    {
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/user/update/".$id.$this->getToken(),$request->all());
+        // dd($data['message']);
+        Session::put('firstname',$data['data']['firstname']);
+        Session::put('lastname',$data['data']['lastname']);
+        Session::put('email',$data['data']['email']);
+        if($data['code'] == 1){
+            toast($data['message'],'success');
+            return back();
+        }else{
+            toast($data['message'],'error');
+            return back();
+        }
     }
     public function indexBarangKeluar(){
         $user = Http::get($this->api."/user/nonauth/indexuser");
@@ -32,10 +48,10 @@ class HomeController extends Controller
     public function barangKeluar(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangkeluar",$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -51,10 +67,10 @@ class HomeController extends Controller
     public function barangModalKeluar(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalkeluar",$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -70,10 +86,10 @@ class HomeController extends Controller
     public function barangModalPinjam(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalpinjam",$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }

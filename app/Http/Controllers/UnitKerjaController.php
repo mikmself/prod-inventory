@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class UnitKerjaController extends Controller
 {
@@ -27,10 +26,10 @@ class UnitKerjaController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/unitkerja/store".$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -42,7 +41,7 @@ class UnitKerjaController extends Controller
         if($data['code'] == 1){
             return view('dashboard.master.unitkerja.index',compact('data'));
         }else{
-            Alert::error('Operasi Gagal', 'Data tidak ditemukan');
+            toast('data tidak ditemukan','warning');
             return back();
         }
     }
@@ -59,10 +58,10 @@ class UnitKerjaController extends Controller
             'apikey' => $this->getApiKey()
         ])->post($this->api."/unitkerja/update/".$id.$this->getToken(),$request->all());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return back();
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
@@ -72,10 +71,10 @@ class UnitKerjaController extends Controller
             'apikey' => $this->getApiKey()
         ])->delete($this->api."/unitkerja/destroy/".$id.$this->getToken());
         if($data['code'] == 1){
-            Alert::success('Operasi Sukses', $data['message']);
+            toast($data['message'],'success');
             return redirect(route('indexunitkerja'));
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return redirect(route('indexunitkerja'));
         }
     }
@@ -84,13 +83,6 @@ class UnitKerjaController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.unitkerja.index',compact('data'));
-    }
-    public function gotopage(Request $request){
-        $data = Http::withHeaders([
-            'apikey' => $this->getApiKey()
-        ])->get($request->input('link') . "&token=" . Session::get('token'));
-        // dd($data['data']);
         return view('dashboard.master.unitkerja.index',compact('data'));
     }
     public function nextpage(Request $request){

@@ -26,7 +26,7 @@ class AuthController extends Controller
 
             return redirect('admin/dashboard/');
         }else{
-            Alert::error('Operasi Gagal', $data['message']);
+            toast($data['message'],'error');
             return back();
         }
     }
