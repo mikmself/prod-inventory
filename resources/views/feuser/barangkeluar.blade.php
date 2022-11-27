@@ -6,12 +6,14 @@
         <input type="search" id="searchbarang" placeholder="Search barang" style="
             width: 5cm;
             height: .8cm;
-            border-radius: 8px;
+            border-radius: 5px;
             background: transparent;
             margin-bottom: .5cm;
             border: 2px solid black;
             color: black;
             padding-left: .2cm;
+            margin-top : .5cm;
+            margin-left:.5cm;
         ">
         <div class="bottom">
             <p class="title">Pilih Barang</p>

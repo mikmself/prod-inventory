@@ -182,7 +182,6 @@ $.ajax({
             let idbarang = idhp.replace('bhp', '');
             let nama = document.querySelector(`#${el.id} .kanan .nama`).textContent;
             let desc = document.querySelector(`#${el.id} .kanan .desc`).textContent;
-            let pathimg = document.querySelector(`#${el.id} .img`).src;
             el.addEventListener("click",()=>{
                 let inputid = document.createElement("input");
                 inputid.setAttribute("name","id_barang[]");
@@ -203,10 +202,6 @@ $.ajax({
                 div.className = "item";
                 div.id = "itembhpterpilih" + idhp;
 
-                let img = document.createElement("img");
-                img.src = pathimg;
-                img.className = "img";
-                div.appendChild(img);
 
                 let divkanan = document.createElement("div");
                 divkanan.className = "kanan";

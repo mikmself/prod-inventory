@@ -451,7 +451,7 @@ main section#tambah2 .left .bottom {
   width: 100%;
   background-color: white;
   border-radius: 8px;
-  padding: 1cm;
+  padding: .5cm;
   box-sizing: border-box;
   border: 1px solid #E0E0E0;
 }
