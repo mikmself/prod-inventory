@@ -52,7 +52,7 @@ class HomeController extends Controller
             return back();
         }else{
             toast($data['message'],'error');
-            return back();
+            return back()->withInput();
         }
     }
 

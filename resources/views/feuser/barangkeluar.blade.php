@@ -44,13 +44,13 @@
                     <select id="selectuser" name="id_user" required>
                         <option ></option>
                         @foreach ($user['data'] as $user)
-                            <option value="{{$user['id']}}">{{$user['firstname']}} {{$user['lastname']}}</option>
+                            <option value="{{$user['id']}}" {{$user['id'] == old('id_user') ? 'selected' : ''}}>{{$user['firstname']}} {{$user['lastname']}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Kegunaan</label>
-                    <input type="text" name="kegunaan" id="" required/>
+                    <input type="text" name="kegunaan" id="" value="{{old('kegunaan', '')}}" required/>
                 </div>
                 <button type="submit">Submit Barang</button>
             </form>

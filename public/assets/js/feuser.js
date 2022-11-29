@@ -177,6 +177,7 @@ $.ajax({
         let habispakai = document.querySelectorAll(".habispakai .item");
         let bhpterpilih = document.getElementById("bhpterpilih");
         let formtambahbhp = document.getElementById("formtambahbhp");
+        let dataangka = 1;
         habispakai.forEach(el => {
             let idhp = el.id;
             let idbarang = idhp.replace('bhp', '');
@@ -192,7 +193,7 @@ $.ajax({
                 inputjumlah.setAttribute("name","jumlah[]");
                 inputjumlah.setAttribute("id","inputjumlah"+idbarang);
                 inputjumlah.setAttribute("type","hidden");
-                inputjumlah.setAttribute("value",0);
+                inputjumlah.setAttribute("value",1);
                 formtambahbhp.prepend(inputjumlah);
                 formtambahbhp.prepend(inputid);
 
@@ -201,7 +202,7 @@ $.ajax({
                 let div = document.createElement("div");
                 div.className = "item";
                 div.id = "itembhpterpilih" + idhp;
-
+                div.setAttribute('data-angka',dataangka);
 
                 let divkanan = document.createElement("div");
                 divkanan.className = "kanan";
@@ -228,8 +229,7 @@ $.ajax({
 
                 let inputangka = document.createElement("input");
                 inputangka.className = "angka";
-                inputangka.value = 0;
-                inputangka.min = 0;
+                inputangka.value = 1;
                 divcounter.appendChild(inputangka);
 
                 let btnplus = document.createElement("button");
@@ -245,11 +245,12 @@ $.ajax({
 
                 bhpterpilih.prepend(div);
 
+                dataangka++;
                 refreshbhp();
             });
         });
         // Item barang habis pakai terpilih
-        let itembhpterpilih = document.querySelectorAll("#bhpterpilih .item");
+        let angkatambahan = 1;
         function refreshbhp(){
             let itembhpterpilih = document.querySelectorAll("#bhpterpilih .item");
             itembhpterpilih.forEach(element => {
@@ -274,25 +275,31 @@ $.ajax({
                 });
                 let angkainputan = document.querySelector(`#${bhpid} .counter input.angka`);
                 let inputanjumlah = document.getElementById("inputjumlah"+idmentah);
+
                 angkainputan.addEventListener("input",function(e){
                     inputanjumlah.value = e.target.value;
                 })
-
-                let btnmin = document.querySelector(`#${bhpid} .counter .minus`);
-                btnmin.addEventListener("click",()=>{
-                    let hasilmin = angkainputan.value - 1;
-                    angkainputan.value = hasilmin;
-                    inputanjumlah.value = hasilmin;
-
-                });
-                let btnplus = document.querySelector(`#${bhpid} .counter .plus`);
-                btnplus.addEventListener("click",()=>{
-                    let hasilplus = parseInt(angkainputan.value) + 1;
-                    console.log(hasilplus)
-                    angkainputan.value = hasilplus;
-                    inputanjumlah.value = hasilplus;
-                });
+                let itemspesifik = document.getElementById(bhpid);
+                console.log(`dataset angka : ${itemspesifik.dataset.angka}`);
+                console.log(`angka tambahan : ${angkatambahan}`);
+                if(itemspesifik.dataset.angka == angkatambahan){
+                    let btnmin = document.querySelector(`#${bhpid} .counter .minus`);
+                    btnmin.addEventListener("click",()=>{
+                        if(angkainputan.value>1){
+                            let hasilmin = angkainputan.value - 1;
+                            angkainputan.value = hasilmin;
+                            inputanjumlah.value = hasilmin;
+                        }
+                    });
+                    let btnplus = document.querySelector(`#${bhpid} .counter .plus`);
+                    btnplus.addEventListener("click",()=>{
+                        let hasilplus = parseInt(angkainputan.value) + 1;
+                        angkainputan.value = hasilplus;
+                        inputanjumlah.value = hasilplus;
+                    });
+                }
             });
+            angkatambahan++;
         }
 
     }
