@@ -1,6 +1,11 @@
 @extends('feuser.master')
 @section('title','Barang Keluar')
 @section('content')
+<style>
+    .disabled-item{
+        background-color: rgb(226, 226, 226) !important;
+    }
+</style>
 <section id="tambah2">
     <div class="left">
         <input type="search" id="searchbarang" placeholder="Search barang" style="
