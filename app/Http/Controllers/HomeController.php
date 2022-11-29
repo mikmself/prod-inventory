@@ -50,7 +50,7 @@ class HomeController extends Controller
         foreach ($datajumlah as $jumlah) {
             if($jumlah < 1){
                 toast('input masukan tidak boleh 0','error');
-                return back();
+                return back()->withInput();
             }
         }
         $data = Http::post($this->api . "/user/nonauth/barangkeluar",$request->all());
