@@ -189,7 +189,7 @@ $.ajax({
             let sisa = document.querySelector(`#${el.id} .kanan .desc .sisa`).textContent;
             el.addEventListener("click",()=>{
                 if(sisa < 1){
-                    alert('barang tidak bisa di pilih karen atersisa 0!');
+
                 }else{
                     let inputid = document.createElement("input");
                     inputid.setAttribute("name","id_barang[]");

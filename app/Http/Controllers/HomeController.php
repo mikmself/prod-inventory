@@ -46,6 +46,13 @@ class HomeController extends Controller
         return view('feuser.barangkeluar',compact('user'));
     }
     public function barangKeluar(Request $request){
+        $datajumlah = $request->input("jumlah");
+        foreach ($datajumlah as $jumlah) {
+            if($jumlah < 1){
+                toast('input masukan tidak boleh 0','error');
+                return back();
+            }
+        }
         $data = Http::post($this->api . "/user/nonauth/barangkeluar",$request->all());
         if($data['code'] == 1){
             toast($data['message'],'success');
