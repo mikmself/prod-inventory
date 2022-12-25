@@ -26,6 +26,7 @@
           <th>Kategori</th>
           <th>Stok</th>
           <th>Satuan</th>
+          <th>Harga</th>
           <th>Update Terakhir</th>
           <th></th>
         </tr>
@@ -38,6 +39,7 @@
             <td>{{$barang['kategori']['nama_kategori']}}</td>
             <td>{{$barang['stok']}}</td>
             <td>{{$barang['satuan']}}</td>
+            <td>{{$barang['harga']}}</td>
             <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
             <td class="action">
                 <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
