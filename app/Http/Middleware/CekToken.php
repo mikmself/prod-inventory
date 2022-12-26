@@ -13,7 +13,7 @@ class CekToken
     {
         $token = Session::get('token');
         $apikey = Session::get('apikey');
-        $api = "https://restinventory.bakaranproject.com";
+        $api = "http://bpinvservice.bakaranproject.com";
         if(isset($token) && isset($apikey)){
             $data = Http::withHeaders([
                 'apikey' => $apikey

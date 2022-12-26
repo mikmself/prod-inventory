@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public $api = "https://restinventory.bakaranproject.com";
+    public $api = "http://bpinvservice.bakaranproject.com";
     // public $api = "http://127.0.0.1:8000";
     public function getToken(){
         return "?token=" . Session::get('token');

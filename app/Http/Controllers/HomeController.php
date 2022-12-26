@@ -19,8 +19,8 @@ class HomeController extends Controller
         $email = Session::get('email');
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->get($this->api."/user" . $this->getToken());
-        $collection = collect($data->json()['data']['data']);
+        ])->get($this->api."/user/nonauth/indexuser");
+        $collection = collect($data->json()['data']);
         $user = $collection->whereIn('email',$email)->first();
         return view('dashboard.pengaturan.index',compact('user'));
     }

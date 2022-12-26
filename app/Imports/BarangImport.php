@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class BarangImport implements ToCollection, WithHeadingRow
 {
-    public $api = "https://restinventory.bakaranproject.com";
+    public $api = "http://bpinvservice.bakaranproject.com";
     public function getToken(){
         return "?token=" . Session::get('token');
     }

@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class UserExport implements FromArray, WithHeadings
 {
-    public $api = "https://restinventory.bakaranproject.com";
+    public $api = "http://bpinvservice.bakaranproject.com";
     public function getToken(){
         return "?token=" . Session::get('token');
     }
