@@ -18,7 +18,7 @@
             <div class="extrasmenu">
                 <a href="{{route('indexbarangkeluarnonauth')}}">Barang Keluar</a>
                 <a href="{{route('indexbarangmodalkeluarnonauth')}}">Barang Modal Keluar</a>
-                <a href="{{route('indexbarangmodalpinjamnonauth')}}">Barang Modal Pinjam</a>
+                <a href="{{route('indexbarangmodalpinjamnonauth')}}">Bon Pinjam</a>
             </div>
         </section>
         @yield('content')

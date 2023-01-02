@@ -185,7 +185,7 @@ class BarangController extends Controller
     }
     public function filterBarangKeluar(Request $request){
         $iduser = $request->input('id_user');
-        $datauser = Http::get($this->api."/user/nonauth/indexuser");
+        $dataunitkerja = Http::get($this->api."/user/nonauth/unitkerja");
         if($iduser == null){
             $data = Http::withHeaders([
                 'apikey' => $this->getApiKey()
@@ -200,7 +200,7 @@ class BarangController extends Controller
                 'data' => $datas
             ];
         }
-        return view('dashboard.master.barang.barangkeluar.index',compact('data','datauser'));
+        return view('dashboard.master.barang.barangkeluar.index',compact('data','dataunitkerja'));
     }
     public function addBarangKeluar()
     {

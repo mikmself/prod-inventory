@@ -106,7 +106,7 @@ $.ajax({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     type : 'GET',
-    url : 'https://restinventory.bakaranproject.com/user/nonauth/indexbarang',
+    url : 'http://bpinvservice.bakaranproject.com/user/nonauth/indexbarang',
     data : [],
     success : function(response){
         let datamentah = response.data;

@@ -45,11 +45,11 @@
                     <input type="datetime-local" name="tanggal_keluar" id="" value="{{\Carbon\Carbon::now()}}" required/>
                 </div>
                 <div class="form-group">
-                    <label>User</label>
-                    <select id="selectuser" name="id_user" required>
+                    <label>Unit Kerja</label>
+                    <select id="selectuser" name="id_unitkerja" required>
                         <option ></option>
-                        @foreach ($user['data'] as $user)
-                            <option value="{{$user['id']}}" {{$user['id'] == old('id_user') ? 'selected' : ''}}>{{$user['firstname']}} {{$user['lastname']}}</option>
+                        @foreach ($unitkerja['data'] as $unitkerja)
+                            <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == old('id_unitkerja') ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
                         @endforeach
                     </select>
                 </div>

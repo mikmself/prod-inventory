@@ -1,5 +1,5 @@
 @extends('feuser.master')
-@section('title','Barang Modal Pinjam')
+@section('title','Bon Pinjam')
 @section('content')
 <section id="tambah">
     <div class="left">

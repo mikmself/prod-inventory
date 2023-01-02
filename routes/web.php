@@ -31,7 +31,7 @@ Route::prefix('operasi')->group(function(){
     Route::get('/barangmodalkeluar',[HomeController::class,'indexBarangModalKeluar'])->name('indexbarangmodalkeluarnonauth');
     Route::post('/barangmodalkeluar',[HomeController::class,'barangModalKeluar'])->name('barangmodalkeluarnonauth');
 
-    Route::get('/barangmodalpinjam',[HomeController::class,'indexBarangModalPinjam'])->name('indexbarangmodalpinjamnonauth');
+    Route::get('/bonpinjam',[HomeController::class,'indexBarangModalPinjam'])->name('indexbarangmodalpinjamnonauth');
     Route::post('/barangmodalpinjam',[HomeController::class,'barangModalPinjam'])->name('barangmodalpinjamnonauth');
 
 });

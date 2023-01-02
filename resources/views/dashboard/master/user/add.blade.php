@@ -49,17 +49,6 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="selectunitkerja">Unit Kerja</label>
-            <div class="col-sm-10">
-              <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
-                <option ></option>
-                @foreach ($data['data']['data'] as $data)
-                    <option value="{{$data['id']}}">{{$data['nama']}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="nip">Nip</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="nip" name="nip" required/>

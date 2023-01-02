@@ -20,10 +20,10 @@
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="selectuser">User</label>
             <div class="col-sm-10">
-              <select class="form-control" id="selectuser" name="id_user" required>
+              <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
                 <option ></option>
-                @foreach ($datauser['data'] as $user)
-                    <option value="{{$user['id']}}">{{$user['firstname'] . " " . $user['lastname']}}</option>
+                @foreach ($dataunitkerja['data'] as $unitkerja)
+                    <option value="{{$unitkerja['id']}}">{{$unitkerja['nama']}}</option>
                 @endforeach
               </select>
             </div>

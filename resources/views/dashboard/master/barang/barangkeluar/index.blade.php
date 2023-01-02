@@ -11,7 +11,7 @@
       <thead>
         <tr>
             <th class="margin-left">ID</th>
-            <th>User</th>
+            <th>Unit Kerja</th>
             <th>Barang</th>
             <th>Jumlah</th>
             <th>Tanggal Keluar</th>
@@ -25,7 +25,7 @@
         @foreach ($data['data']['data'] as $barangkeluar)
         <tr>
           <td class="margin-left">{{$barangkeluar['id']}}</td>
-          <td>{{$barangkeluar['user']['firstname'] . " " . $barangkeluar['user']['lastname']}}</td>
+          <td>{{$barangkeluar['unitkerja']['nama']}}</td>
           <td>{{$barangkeluar['barang']['nama']}}</td>
           <td>{{$barangkeluar['jumlah']}}</td>
           <td>{{ \Carbon\Carbon::parse($barangkeluar['tanggal_keluar'])->isoFormat('dddd, D MMMM Y')}}</td>

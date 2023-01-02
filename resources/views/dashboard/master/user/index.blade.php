@@ -17,7 +17,6 @@
           <th class="margin-left">ID user</th>
           <th>Nama</th>
           <th>NIP</th>
-          <th>Unit Kerja</th>
           <th>Email</th>
           <th>No Telephone</th>
           <th>Level</th>
@@ -32,7 +31,6 @@
             <td>{{$datauser['firstname']}} {{$datauser['lastname']}}</td>
             <td>{{$datauser['email']}}</td>
             <td>{{$datauser['nip']}}</td>
-            <td>{{$datauser['unitkerja']['nama']}}</td>
             <td>{{$datauser['notelp']}}</td>
             <td>{{$datauser['level']}}</td>
             <td>{{ \Carbon\Carbon::parse($datauser['updated_at'])->diffForHumans()}}</td>

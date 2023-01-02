@@ -55,20 +55,9 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="pemesan">Pemesan</label>
+            <label class="col-sm-2 col-form-label" for="harga">Harga</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="pemesan" name="pemesan" required/>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="selectuser">Penerima</label>
-            <div class="col-sm-10">
-              <select class="form-control" id="selectuser" name="penerima" required>
-                <option ></option>
-                @foreach ($datauser['data'] as $user)
-                    <option value="{{$user['firstname'] . " " . $user['lastname']}}">{{$user['firstname'] . " " . $user['lastname']}}</option>
-                @endforeach
-              </select>
+              <input type="number" class="form-control" id="harga" name="harga" required/>
             </div>
           </div>
           <div class="row justify-content-end">

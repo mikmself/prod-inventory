@@ -12,7 +12,6 @@
       <div class="card-body">
         <form action="{{route('updatepengaturandashboard',$user['id'])}}" method="POST">
           @csrf
-          <input type="hidden" name="id_unitkerja" value="{{$user['id_unitkerja']}}">
           <div class="mb-3">
             <label class="form-label" for="firstname">First Name</label>
             <input type="text" class="form-control" id="firstname" name="firstname" value="{{$user['firstname']}}"/>

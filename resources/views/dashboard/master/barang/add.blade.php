@@ -60,12 +60,6 @@
               <input type="text" class="form-control" id="satuan" name="satuan" required/>
             </div>
           </div>
-          <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="harga">Harga</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="harga" name="harga" required/>
-            </div>
-          </div>
           <div class="row justify-content-end">
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">Submit</button>

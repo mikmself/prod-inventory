@@ -29,7 +29,6 @@ class HomeController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->post($this->api."/user/update/".$id.$this->getToken(),$request->all());
-        // dd($data['message']);
         Session::put('firstname',$data['data']['firstname']);
         Session::put('lastname',$data['data']['lastname']);
         Session::put('email',$data['data']['email']);
@@ -42,8 +41,8 @@ class HomeController extends Controller
         }
     }
     public function indexBarangKeluar(){
-        $user = Http::get($this->api."/user/nonauth/indexuser");
-        return view('feuser.barangkeluar',compact('user'));
+        $unitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
+        return view('feuser.barangkeluar',compact('unitkerja'));
     }
     public function barangKeluar(Request $request){
         $datajumlah = $request->input("jumlah");
