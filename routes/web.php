@@ -20,21 +20,22 @@ Route::get('/',function(){
 
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/storelogin',[AuthController::class,'storelogin'])->name('storelogin');
-
-Route::prefix('operasi')->group(function(){
-    Route::post('/getspesifikbarangfisik',[HomeController::class,'getSpesifikBarangFisik']);
-    Route::post('/searchbarang',[HomeController::class,'searchBarang']);
-
-    Route::get('/barangkeluar',[HomeController::class,'indexBarangKeluar'])->name('indexbarangkeluarnonauth');
-    Route::post('/barangkeluar',[HomeController::class,'barangKeluar'])->name('barangkeluarnonauth');
-
-    Route::get('/barangmodalkeluar',[HomeController::class,'indexBarangModalKeluar'])->name('indexbarangmodalkeluarnonauth');
-    Route::post('/barangmodalkeluar',[HomeController::class,'barangModalKeluar'])->name('barangmodalkeluarnonauth');
-
-    Route::get('/bonpinjam',[HomeController::class,'indexBarangModalPinjam'])->name('indexbarangmodalpinjamnonauth');
-    Route::post('/barangmodalpinjam',[HomeController::class,'barangModalPinjam'])->name('barangmodalpinjamnonauth');
-
+Route::middleware(['cektoken'])->group(function () {
+    Route::prefix('operasi')->group(function(){
+        Route::post('/getspesifikbarangfisik',[HomeController::class,'getSpesifikBarangFisik']);
+        Route::post('/searchbarang',[HomeController::class,'searchBarang']);
+    
+        Route::get('/barangkeluar',[HomeController::class,'indexBarangKeluar'])->name('indexbarangkeluarnonauth');
+        Route::post('/barangkeluar',[HomeController::class,'barangKeluar'])->name('barangkeluarnonauth');
+    
+        Route::get('/barangmodalkeluar',[HomeController::class,'indexBarangModalKeluar'])->name('indexbarangmodalkeluarnonauth');
+        Route::post('/barangmodalkeluar',[HomeController::class,'barangModalKeluar'])->name('barangmodalkeluarnonauth');
+    
+        Route::get('/bonpinjam',[HomeController::class,'indexBarangModalPinjam'])->name('indexbarangmodalpinjamnonauth');
+        Route::post('/barangmodalpinjam',[HomeController::class,'barangModalPinjam'])->name('barangmodalpinjamnonauth');
+    });    
 });
+
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
