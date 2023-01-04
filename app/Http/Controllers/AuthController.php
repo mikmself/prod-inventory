@@ -19,11 +19,17 @@ class AuthController extends Controller
             Session::put('firstname',$data['data']['firstname']);
             Session::put('lastname',$data['data']['lastname']);
             Session::put('nip',$data['data']['nip']);
+            Session::put('level',$data['data']['level']);
             Session::put('email',$data['data']['email']);
             Session::put('token',$data['data']['token']);
             Session::put('apikey',$data['data']['access_token']);
-
-            return redirect('admin/dashboard/');
+            
+            $isAdmin = $data['data']['level'] == "admin";
+            if($isAdmin){
+                return redirect('admin/dashboard/');
+            }else{
+                return redirect('/operasi/barangkeluar');
+            }
         }else{
             toast($data['message'],'error');
             return back();

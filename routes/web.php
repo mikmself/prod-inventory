@@ -38,7 +38,7 @@ Route::middleware(['cektoken'])->group(function () {
 
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
-Route::prefix('admin/dashboard')->middleware('cektoken')->group(function () {
+Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(function () {
     Route::get('/',[HomeController::class,'index'])->name('indexDashboard');
     Route::prefix('master')->group(function(){
         Route::prefix('barang')->group(function(){
