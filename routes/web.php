@@ -93,6 +93,8 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/delete/{id}',[BarangController::class,'destroy'])->name('deletebarang');
             Route::get('/exportexcel',[BarangController::class,'exportexcel'])->name('exportexcel');
             Route::post('/importexcel',[BarangController::class,'importexcel'])->name('importexcel');
+            Route::post('/importbarangmasuk',[BarangController::class,'importbarangmasuk'])->name('importbarangmasuk');
+            Route::get('/downloadexcelbarangmasuk',[BarangController::class,'downloadexcelbarangmasuk'])->name('downloadexcelbarangmasuk');
             Route::get('/downloadexcel',[BarangController::class,'downloadexcel'])->name('downloadexcel');
 
             Route::post('/getspesifikbarangfisik',[BarangController::class,'getSpesifikBarangFisik'])->name('getspesifikbarangfisik');

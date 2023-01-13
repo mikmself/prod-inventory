@@ -9,6 +9,31 @@
   <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
+        <h5 class="mb-4">Tambah data masal</h5>
+        <form action="{{route('importbarangmasuk')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <small>Download contoh file : <a href="{{route('downloadexcelbarangmasuk')}}">Download</a></small>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="file">File (Excel)</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" id="file" name="file" required/>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-body">
         <form action="{{route('barangmasuk')}}" method="POST">
           @csrf
           <div class="row mb-3">

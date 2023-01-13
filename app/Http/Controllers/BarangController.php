@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\BarangExport;
 use App\Imports\BarangImport;
+use App\Imports\BarangMasukImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
@@ -425,10 +426,29 @@ class BarangController extends Controller
             return back();
         }
     }
+    public function importbarangmasuk(Request $request){
+        $validator = Validator::make($request->all(),[
+            'file' => 'required|file'
+        ]);
+        if($validator->fails()){
+            toast('gagal, isi file sesuai yang diminta!','warning');
+            return back();
+        }else{
+            $path1 = $request->file('file')->store('temp');
+            $path=storage_path('app').'/'.$path1;
+            Excel::import(new BarangMasukImport, $path);
+            toast('data berhasil di import','success');
+            return back();
+        }
+    }
     public function downloadexcel(){
         $file= public_path(). "/excel/barang.xlsx";
         return response()->download($file);
     }    
+    public function downloadexcelbarangmasuk(){
+        $file= public_path(). "/excel/barangmasuk.xlsx";
+        return response()->download($file);
+    }
     public function exportexcel(){
         return Excel::download(new BarangExport, 'barangexport.xlsx');
     }

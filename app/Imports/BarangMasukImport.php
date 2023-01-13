@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class BarangImport implements ToCollection, WithHeadingRow
+class BarangMasukImport implements ToCollection, WithHeadingRow
 {
     public $api = "http://bpinvservice.bakaranproject.com";
     public function getToken(){
@@ -22,7 +22,7 @@ class BarangImport implements ToCollection, WithHeadingRow
     {
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->post($this->api."/barang/importexcel".$this->getToken(),[
+        ])->post($this->api."/barang/importbarangmasuk".$this->getToken(),[
             "rows" => $rows
         ]);
         return $data['code'];
