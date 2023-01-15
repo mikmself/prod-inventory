@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SuplayerController;
@@ -183,5 +184,13 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
     Route::prefix('pengaturan')->group(function(){
         Route::get('/',[HomeController::class,'indexPengaturan'])->name('pengaturan');
         Route::post('/update/{id}',[HomeController::class,'updatePengaturan'])->name('updatepengaturandashboard');
+    });
+    Route::prefix('laporan')->group(function(){
+        Route::get('/',[LaporanController::class,'index'])->name('indexLaporan');
+        Route::post('/exportBarangMasuk',[LaporanController::class,'exportBarangMasuk'])->name('exportBarangMasuk');
+        Route::post('/exportBarangKeluar',[LaporanController::class,'exportBarangKeluar'])->name('exportBarangKeluar');
+        Route::post('/exportBarangModalKeluar',[LaporanController::class,'exportBarangModalKeluar'])->name('exportBarangModalKeluar');
+        Route::post('/exportBarangModalPinjam',[LaporanController::class,'exportBarangModalPinjam'])->name('exportBarangModalPinjam');
+        Route::post('/exportBarangModalKembali',[LaporanController::class,'exportBarangModalKembali'])->name('exportBarangModalKembali');
     });
 });
