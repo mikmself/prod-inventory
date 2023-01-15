@@ -15,7 +15,7 @@
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
                             @foreach ($barang as $satuan)
-                                <option>{{ $satuan['nama'] }}</option>                                
+                                <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
                         </select>
                         <label for="start" class="pt-3 pb-1">Start</label>
@@ -46,7 +46,7 @@
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
                             @foreach ($barangHabisPakai as $satuan)
-                                <option>{{ $satuan['nama'] }}</option>                                
+                                <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
                         </select>
                         <label for="start" class="pt-3 pb-1">Start</label>
@@ -77,7 +77,7 @@
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
                             @foreach ($barangModal as $satuan)
-                                <option>{{ $satuan['nama'] }}</option>                                
+                                <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
                         </select>
                         <label for="start" class="pt-3 pb-1">Start</label>
@@ -108,7 +108,7 @@
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
                             @foreach ($barangModal as $satuan)
-                                <option>{{ $satuan['nama'] }}</option>                                
+                                <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
                         </select>
                         <label for="start" class="pt-3 pb-1">Start</label>
@@ -139,7 +139,7 @@
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
                             @foreach ($barangModal as $satuan)
-                                <option>{{ $satuan['nama'] }}</option>                                
+                                <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
                         </select>
                         <label for="start" class="pt-3 pb-1">Start</label>
