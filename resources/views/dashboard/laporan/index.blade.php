@@ -14,6 +14,7 @@
                     <div class="modal-body">
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
+                            <option>Semua Barang</option>
                             @foreach ($barang as $satuan)
                                 <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
@@ -45,6 +46,7 @@
                     <div class="modal-body">
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
+                            <option>Semua Barang</option>
                             @foreach ($barangHabisPakai as $satuan)
                                 <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
@@ -76,6 +78,7 @@
                     <div class="modal-body">
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
+                            <option>Semua Barang</option>
                             @foreach ($barangModal as $satuan)
                                 <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
@@ -107,6 +110,7 @@
                     <div class="modal-body">
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
+                            <option>Semua Barang</option>
                             @foreach ($barangModal as $satuan)
                                 <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
@@ -138,6 +142,7 @@
                     <div class="modal-body">
                         <label for="nama" class="pt-3 pb-1">Nama</label>
                         <select class="form-control" name="nama">
+                            <option>Semua Barang</option>
                             @foreach ($barangModal as $satuan)
                                 <option value="{{ $satuan['nama'] }}">{{ $satuan['nama'] }}</option>                                
                             @endforeach
