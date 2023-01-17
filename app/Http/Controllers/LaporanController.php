@@ -23,18 +23,18 @@ class LaporanController extends Controller
         return view('dashboard.laporan.index',compact('barang','barangModal','barangHabisPakai'));
     }
     public function exportBarangMasuk(Request $request){
-        return Excel::download(new BarangMasuk($request->all()), 'laporanbarangmasuk.xlsx');
+        return Excel::download(new BarangMasuk($request->all()), date('d-m-y-H-i-s',time()) . 'barangmasuk.xlsx');
     }
     public function exportBarangKeluar(Request $request){
-        return Excel::download(new BarangKeluar($request->all()), 'laporanbarangkeluar.xlsx');
+        return Excel::download(new BarangKeluar($request->all()), date('d-m-y-H-i-s',time()) . 'barangkeluar.xlsx');
     }
     public function exportBarangModalKeluar(Request $request){
-        return Excel::download(new BarangModalKeluar($request->all()), 'laporanbarangmodalkeluar.xlsx');
+        return Excel::download(new BarangModalKeluar($request->all()), date('d-m-y-H-i-s',time()) . 'barangmodalkeluar.xlsx');
     }
     public function exportBarangModalPinjam(Request $request){
-        return Excel::download(new BarangModalPinjam($request->all()), 'laporanbarangmodalpinjam.xlsx');
+        return Excel::download(new BarangModalPinjam($request->all()), date('d-m-y-H-i-s',time()) . 'barangmodalpinjam.xlsx');
     }
     public function exportBarangModalKembali(Request $request){
-        return Excel::download(new BarangModalKembali($request->all()), 'laporanbarangmodalKembali.xlsx');
+        return Excel::download(new BarangModalKembali($request->all()), date('d-m-y-H-i-s',time()) . 'barangmodalKembali.xlsx');
     }
 }
