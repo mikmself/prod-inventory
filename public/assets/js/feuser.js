@@ -115,9 +115,6 @@ $.ajax({
             // create element
             let div = document.createElement('div');
             div.classList = "item";
-            if(element.stok < 1){
-                div.classList.add('disabled-item');
-            }
             div.id = `bhp${element.id}`;
 
             let img = document.createElement('img');
@@ -188,73 +185,69 @@ $.ajax({
             let desc = document.querySelector(`#${el.id} .kanan .desc`).textContent;
             let sisa = document.querySelector(`#${el.id} .kanan .desc .sisa`).textContent;
             el.addEventListener("click",()=>{
-                if(sisa < 1){
+                let inputid = document.createElement("input");
+                inputid.setAttribute("name","id_barang[]");
+                inputid.setAttribute("value",idbarang);
+                inputid.setAttribute("id","inputid"+idbarang);
+                inputid.setAttribute("type","hidden");
+                let inputjumlah = document.createElement("input");
+                inputjumlah.setAttribute("name","jumlah[]");
+                inputjumlah.setAttribute("id","inputjumlah"+idbarang);
+                inputjumlah.setAttribute("type","hidden");
+                inputjumlah.setAttribute("value",1);
+                formtambahbhp.prepend(inputjumlah);
+                formtambahbhp.prepend(inputid);
 
-                }else{
-                    let inputid = document.createElement("input");
-                    inputid.setAttribute("name","id_barang[]");
-                    inputid.setAttribute("value",idbarang);
-                    inputid.setAttribute("id","inputid"+idbarang);
-                    inputid.setAttribute("type","hidden");
-                    let inputjumlah = document.createElement("input");
-                    inputjumlah.setAttribute("name","jumlah[]");
-                    inputjumlah.setAttribute("id","inputjumlah"+idbarang);
-                    inputjumlah.setAttribute("type","hidden");
-                    inputjumlah.setAttribute("value",1);
-                    formtambahbhp.prepend(inputjumlah);
-                    formtambahbhp.prepend(inputid);
+                el.style.display = "none";
 
-                    el.style.display = "none";
+                let div = document.createElement("div");
+                div.className = "item";
+                div.id = "itembhpterpilih" + idhp;
+                div.setAttribute('data-angka',dataangka);
 
-                    let div = document.createElement("div");
-                    div.className = "item";
-                    div.id = "itembhpterpilih" + idhp;
-                    div.setAttribute('data-angka',dataangka);
+                let divkanan = document.createElement("div");
+                divkanan.className = "kanan";
 
-                    let divkanan = document.createElement("div");
-                    divkanan.className = "kanan";
+                let pnama = document.createElement("p");
+                pnama.className = "nama";
+                pnama.textContent = nama;
+                divkanan.appendChild(pnama);
 
-                    let pnama = document.createElement("p");
-                    pnama.className = "nama";
-                    pnama.textContent = nama;
-                    divkanan.appendChild(pnama);
+                let pdesc = document.createElement("p");
+                pdesc.className = "desc";
+                pdesc.textContent = desc;
+                divkanan.appendChild(pdesc);
 
-                    let pdesc = document.createElement("p");
-                    pdesc.className = "desc";
-                    pdesc.textContent = desc;
-                    divkanan.appendChild(pdesc);
+                div.appendChild(divkanan);
 
-                    div.appendChild(divkanan);
+                let divcounter = document.createElement("div");
+                divcounter.className = "counter";
 
-                    let divcounter = document.createElement("div");
-                    divcounter.className = "counter";
+                let btnmin = document.createElement("button");
+                btnmin.className = "minus";
+                btnmin.textContent = "-";
+                divcounter.appendChild(btnmin);
 
-                    let btnmin = document.createElement("button");
-                    btnmin.className = "minus";
-                    btnmin.textContent = "-";
-                    divcounter.appendChild(btnmin);
+                let inputangka = document.createElement("input");
+                inputangka.className = "angka";
+                inputangka.value = 1;
+                divcounter.appendChild(inputangka);
 
-                    let inputangka = document.createElement("input");
-                    inputangka.className = "angka";
-                    inputangka.value = 1;
-                    divcounter.appendChild(inputangka);
+                let btnplus = document.createElement("button");
+                btnplus.className = "plus";
+                btnplus.textContent = "+";
+                divcounter.appendChild(btnplus);
+                div.appendChild(divcounter);
 
-                    let btnplus = document.createElement("button");
-                    btnplus.className = "plus";
-                    btnplus.textContent = "+";
-                    divcounter.appendChild(btnplus);
-                    div.appendChild(divcounter);
+                let pclose = document.createElement("p");
+                pclose.className = "close";
+                pclose.textContent = "X";
+                div.appendChild(pclose);
 
-                    let pclose = document.createElement("p");
-                    pclose.className = "close";
-                    pclose.textContent = "X";
-                    div.appendChild(pclose);
+                bhpterpilih.prepend(div);
 
-                    bhpterpilih.prepend(div);
-
-                    dataangka++;
-                    refreshbhp();
-                }
+                dataangka++;
+                refreshbhp();
             });
         });
         // Item barang habis pakai terpilih
