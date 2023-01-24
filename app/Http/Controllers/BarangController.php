@@ -211,8 +211,9 @@ class BarangController extends Controller
         ])->get($this->api."/barang" . $this->getToken());
         $collection = collect($datamentahbarang->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',2);
+        $dataunitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
         $datauser = Http::get($this->api."/user/nonauth/indexuser");
-        return view('dashboard.master.barang.barangkeluar.add',compact('databarang','datauser'));
+        return view('dashboard.master.barang.barangkeluar.add',compact('databarang','datauser','dataunitkerja'));
     }
     public function barangKeluar(Request $request){
         $data = Http::withHeaders([

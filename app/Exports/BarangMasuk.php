@@ -81,7 +81,7 @@ class BarangMasuk implements FromArray, WithHeadings, WithEvents, WithStyles, Wi
                         ->getStartColor()
                         ->setARGB('8094FF');
 
-                $event->sheet->setCellValue('B2', 'EXPORT BARANG MASUK');
+                $event->sheet->setCellValue('B2', 'LAPORAN BARANG MASUK');
                 $event->sheet->setCellValue('B3', 'SMK NEGERI 1 PURWOKERTO');
                 $event->sheet->getDelegate()->getStyle('B2')->getFont()->setSize(14);
                 $event->sheet->getDelegate()->getStyle('B3')->getFont()->setSize(14);
