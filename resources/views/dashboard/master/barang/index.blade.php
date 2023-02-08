@@ -40,6 +40,9 @@
             <td>{{$barang['satuan']}}</td>
             <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
             <td class="action">
+                @if ($barang['id_kategori'] == 1 && $barang['stok'] > 0)
+                    <a href="{{ route('printBarcode',$barang['id']) }}" class="btn btn-dark">Print Barcode</a>
+                @endif
                 <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
                 <a href="{{route('deletebarang',$barang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
             </td>

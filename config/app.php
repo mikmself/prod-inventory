@@ -178,6 +178,7 @@ return [
     App\Providers\MenuServiceProvider::class,
     Maatwebsite\Excel\ExcelServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+    SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
   ],
 
@@ -195,6 +196,7 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
   ])->toArray(),
 
 ];

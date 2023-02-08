@@ -113,7 +113,7 @@ class Vite implements Htmlable
     /**
      * Generate or set a Content Security Policy nonce to apply to all generated tags.
      *
-     * @param  ?string  $nonce
+     * @param  string|null  $nonce
      * @return string
      */
     public function useCspNonce($nonce = null)
@@ -233,7 +233,7 @@ class Vite implements Htmlable
     /**
      * Use the given callback to resolve attributes for preload tags.
      *
-     * @param  (callable(string, string, ?array, ?array): array|false)|array|false  $attributes
+     * @param  (callable(string, string, ?array, ?array): (array|false))|array|false  $attributes
      * @return $this
      */
     public function usePreloadTagAttributes($attributes)
@@ -338,9 +338,10 @@ class Vite implements Htmlable
             }
         }
 
-        [$stylesheets, $scripts] = $tags->partition(fn ($tag) => str_starts_with($tag, '<link'));
+        [$stylesheets, $scripts] = $tags->unique()->partition(fn ($tag) => str_starts_with($tag, '<link'));
 
-        $preloads = $preloads->sortByDesc(fn ($args) => $this->isCssPath($args[1]))
+        $preloads = $preloads->unique()
+            ->sortByDesc(fn ($args) => $this->isCssPath($args[1]))
             ->map(fn ($args) => $this->makePreloadTagForChunk(...$args));
 
         return new HtmlString($preloads->join('').$stylesheets->join('').$scripts->join(''));

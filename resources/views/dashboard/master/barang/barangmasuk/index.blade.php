@@ -17,6 +17,7 @@
             <th>Jumlah</th>
             <th>Tanggal Masuk</th>
             <th>Harga</th>
+            <th>Sumber Dana</th>
           <th></th>
         </tr>
       </thead>
@@ -30,6 +31,7 @@
             <td>{{$barangmasuk['jumlah']}}</td>
             <td>{{ \Carbon\Carbon::parse($barangmasuk['tanggal_masuk'])->isoFormat('dddd, D MMMM Y')}}</td>
             <td>{{$barangmasuk['harga']}}</td>
+            <td>{{$barangmasuk['sumber_dana']}}</td>
         </tr>
         @endforeach
       </tbody>

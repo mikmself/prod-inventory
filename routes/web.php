@@ -53,6 +53,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/fisik',[BarangController::class,'indexBarangFisik'])->name('indexbarangfisik');
             Route::post('/previouspagebarangfisik',[BarangController::class,'previouspagebarangfisik'])->name('previouspagebarangfisik');
             Route::post('/nextpagebarangfisik',[BarangController::class,'nextpagebarangfisik'])->name('nextpagebarangfisik');
+            Route::get('/printbarcode/{id}',[BarangController::class,'printBarcode'])->name('printBarcode');
 
             Route::get('/indexbarangmasuk',[BarangController::class,'indexBarangMasuk'])->name('indexbarangmasuk');
             Route::get('/addbarangmasuk',[BarangController::class,'addBarangMasuk'])->name('addbarangmasuk');

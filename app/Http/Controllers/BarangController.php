@@ -516,4 +516,10 @@ class BarangController extends Controller
         $databarang = $collection->whereIn('id_kategori',2);
         return view('_partials.inputbarangkeluar',compact('databarang'));
     }
+    public function printBarcode($id){
+        $databarangbarang = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->get($this->api."/barang/indexbarangmodalkeluar/" . $id . $this->getToken());
+        return view('dashboard.master.barang.qrcode',compact('databarangbarang'));
+    }
 }
