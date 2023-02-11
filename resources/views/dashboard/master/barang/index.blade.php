@@ -41,7 +41,33 @@
             <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
             <td class="action">
                 @if ($barang['id_kategori'] == 1 && $barang['stok'] > 0)
-                    <a href="{{ route('printBarcode',$barang['id']) }}" class="btn btn-dark">Print Barcode</a>
+                    <div class="modal fade" id="modalBarang{{ $barang['id'] }}" tabindex="-1" aria-labelledby="modalBarang{{ $barang['id'] }}" aria-hidden="true">
+                      <form action="{{ route('printBarcode',$barang['id']) }}" method="post">
+                          @csrf
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="modalBarang{{ $barang['id'] }}">Cetak Barcode</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <label for="start" class="pt-3 pb-1">Start</label>
+                                      <input type="date" name="start" id="start" class="form-control">
+                                      <label for="end" class="pt-3 pb-1">End</label>
+                                      <input type="date" name="end" id="end" class="form-control">
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                        data-bs-target="#modalBarang{{ $barang['id'] }}">
+                        Cetak Laporan
+                    </button>
                 @endif
                 <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
                 <a href="{{route('deletebarang',$barang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
