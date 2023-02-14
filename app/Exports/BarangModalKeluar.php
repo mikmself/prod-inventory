@@ -40,7 +40,7 @@ class BarangModalKeluar implements FromArray, WithHeadings, WithEvents, WithStyl
         foreach ($data['data'] as $dataa) {
             $datamentah = [
                 $dataa['barang']['nama'],
-                $dataa['user']['firstname'] + " " + $dataa['user']['lastname'],
+                $dataa['unitkerja']['nama'],
                 $dataa['barangfisik']['kode'],
                 $dataa['tanggal_keluar'],
                 $dataa['ruang']['nama']
@@ -53,7 +53,7 @@ class BarangModalKeluar implements FromArray, WithHeadings, WithEvents, WithStyl
     {
         return [
             'Nama Barang',
-            'Nama User',
+            'Unit Kerja',
             'Kode Barang Fisik',
             'Tanggal Keluar',
             'Ruang'
