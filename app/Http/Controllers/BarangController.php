@@ -182,8 +182,7 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/barang/indexbarangkeluar" . $this->getToken());
-        $datauser = Http::get($this->api."/user/nonauth/indexuser");
-        return view('dashboard.master.barang.barangkeluar.index',compact('data','datauser'));
+        return view('dashboard.master.barang.barangkeluar.index',compact('data'));
     }
     public function filterBarangKeluar(Request $request){
         $iduser = $request->input('id_user');
@@ -212,8 +211,7 @@ class BarangController extends Controller
         $collection = collect($datamentahbarang->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',2);
         $dataunitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
-        $datauser = Http::get($this->api."/user/nonauth/indexuser");
-        return view('dashboard.master.barang.barangkeluar.add',compact('databarang','datauser','dataunitkerja'));
+        return view('dashboard.master.barang.barangkeluar.add',compact('databarang','dataunitkerja'));
     }
     public function barangKeluar(Request $request){
         $data = Http::withHeaders([
@@ -267,11 +265,11 @@ class BarangController extends Controller
         ])->get($this->api."/barang" . $this->getToken());
         $collection = collect($datamentahbarang->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        $datauser = Http::get($this->api."/user/nonauth/indexuser");
+        $dataunitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
         $dataruang = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/ruang" . $this->getToken());
-        return view('dashboard.master.barang.barangmodalkeluar.add',compact('databarang','datauser','dataruang'));
+        return view('dashboard.master.barang.barangmodalkeluar.add',compact('databarang','dataunitkerja','dataruang'));
     }
     public function barangModalKeluar(Request $request){
         $data = Http::withHeaders([
@@ -326,11 +324,11 @@ class BarangController extends Controller
         ])->get($this->api."/barang" . $this->getToken());
         $collection = collect($datamentahbarang->json()['data']['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        $datauser = Http::get($this->api."/user/nonauth/indexuser");
+        $dataunitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
         $dataruang = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($this->api."/ruang" . $this->getToken());
-        return view('dashboard.master.barang.barangmodalpinjam.add',compact('databarang','datauser','dataruang'));
+        return view('dashboard.master.barang.barangmodalpinjam.add',compact('databarang','dataunitkerja','dataruang'));
     }
     public function barangModalPinjam(Request $request){
         $data = Http::withHeaders([
@@ -484,8 +482,8 @@ class BarangController extends Controller
         $idkategori = $request->idkategori;
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->get($this->api."/barang" . $this->getToken());
-        $collection = collect($data->json()['data']['data']);
+        ])->get($this->api."/user/nonauth/indexbarang" . $this->getToken());
+        $collection = collect($data->json()['data']);
         $databarang = $collection->whereIn('id_kategori',$idkategori);
         foreach ($databarang as $barang) {
             echo "<option value=\"{$barang['id']}\">{$barang['nama']}</option>";
@@ -495,8 +493,8 @@ class BarangController extends Controller
         $idkategori = $request->idkategori;
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->get($this->api."/barang" . $this->getToken());
-        $collection = collect($data->json()['data']['data']);
+        ])->get($this->api."/user/nonauth/indexbarang" . $this->getToken());
+        $collection = collect($data->json()['data']);
         $databarang = $collection->whereIn('id_kategori',$idkategori);
         return view('_partials.databarang',compact('databarang'));
     }
@@ -504,15 +502,15 @@ class BarangController extends Controller
     {
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
-        ])->get($this->api."/barang" . $this->getToken());
+        ])->get($this->api."/user/nonauth/indexbarang" . $this->getToken());
         $databarang = $data['data']['data'];
         return view('_partials.databarang',compact('databarang'));
     }
     public function getInputBarangKeluar(){
         $datamentahbarang = Http::withHeaders([
         'apikey' => $this->getApiKey()
-        ])->get($this->api."/barang" . $this->getToken());
-        $collection = collect($datamentahbarang->json()['data']['data']);
+        ])->get($this->api."/user/nonauth/indexbarang" . $this->getToken());
+        $collection = collect($datamentahbarang->json()['data']);
         $databarang = $collection->whereIn('id_kategori',2);
         return view('_partials.inputbarangkeluar',compact('databarang'));
     }

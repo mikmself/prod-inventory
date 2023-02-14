@@ -51,11 +51,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Nama User</label>
-                    <select id="selectuser" name="id_user" required>
+                    <label>Unit Kerja</label>
+                    <select id="selectuser" name="id_unitkerja" required>
                         <option ></option>
-                        @foreach ($user['data'] as $user)
-                            <option value="{{$user['id']}}">{{$user['firstname']}} {{$user['lastname']}}</option>
+                        @foreach ($unitkerja['data'] as $unitkerja)
+                            <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == old('id_unitkerja') ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
                         @endforeach
                     </select>
                 </div>

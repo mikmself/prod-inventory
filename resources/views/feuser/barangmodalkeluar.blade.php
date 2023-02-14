@@ -34,11 +34,11 @@
             <form action="{{route('barangmodalkeluarnonauth')}}" id="formtambah" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label>Waktu Peminjaman</label>
+                    <label>Waktu Pengambilan</label>
                     <input type="datetime-local" name="tanggal_keluar" id="" value="{{\Carbon\Carbon::now()}}" required>
                 </div>
                 <div class="form-group">
-                    <label>Ruang Peminjaman</label>
+                    <label>Ruang Penempatan</label>
                     <select id="selectruang" name="id_ruang" required>
                         <option ></option>
                         @foreach ($ruang['data'] as $ruang)
@@ -47,11 +47,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Nama User</label>
-                    <select id="selectuser" name="id_user" required>
+                    <label>Unit Kerja</label>
+                    <select id="selectuser" name="id_unitkerja" required>
                         <option ></option>
-                        @foreach ($user['data'] as $user)
-                            <option value="{{$user['id']}}">{{$user['firstname']}} {{$user['lastname']}}</option>
+                        @foreach ($unitkerja['data'] as $unitkerja)
+                            <option value="{{$unitkerja['id']}}" {{$unitkerja['id'] == old('id_unitkerja') ? 'selected' : ''}}>{{$unitkerja['nama']}}</option>
                         @endforeach
                     </select>
                 </div>

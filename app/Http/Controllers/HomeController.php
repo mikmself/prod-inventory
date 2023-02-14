@@ -64,11 +64,11 @@ class HomeController extends Controller
 
     public function indexBarangModalKeluar(){
         $datamentah = Http::get($this->api."/user/nonauth/indexbarang");
-        $user = Http::get($this->api."/user/nonauth/indexuser");
+        $unitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
         $ruang = Http::get($this->api."/user/nonauth/indexruang");
         $collection = collect($datamentah->json()['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        return view('feuser.barangmodalkeluar',compact('databarang','user','ruang'));
+        return view('feuser.barangmodalkeluar',compact('databarang','unitkerja','ruang'));
     }
     public function barangModalKeluar(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalkeluar",$request->all());
@@ -83,11 +83,11 @@ class HomeController extends Controller
 
     public function indexBarangModalPinjam(){
         $datamentah = Http::get($this->api."/user/nonauth/indexbarang");
-        $user = Http::get($this->api."/user/nonauth/indexuser");
+        $unitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
         $ruang = Http::get($this->api."/user/nonauth/indexruang");
         $collection = collect($datamentah->json()['data']);
         $databarang = $collection->whereIn('id_kategori',1);
-        return view('feuser.barangmodalpinjam',compact('databarang','user','ruang'));
+        return view('feuser.barangmodalpinjam',compact('databarang','unitkerja','ruang'));
     }
     public function barangModalPinjam(Request $request){
         $data = Http::post($this->api . "/user/nonauth/barangmodalpinjam",$request->all());

@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="selectuser">User</label>
+            <label class="col-sm-2 col-form-label" for="selectunitkerja">Unit Kerja</label>
             <div class="col-sm-10">
               <select class="form-control" id="selectunitkerja" name="id_unitkerja" required>
                 <option ></option>
