@@ -18,7 +18,9 @@ $controller_path = 'App\Http\Controllers';
 Route::get('/',function(){
     return redirect('/login');
 });
-
+Route::get('/scan',function(){
+    return view('dashboard.master.barang.scan');
+});
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/storelogin',[AuthController::class,'storelogin'])->name('storelogin');
 Route::middleware(['cektoken'])->group(function () {

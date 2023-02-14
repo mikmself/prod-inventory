@@ -125,13 +125,13 @@ class BarangController extends Controller
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.index',compact('data'));
+        return view('dashboard.master.barang.fisik',compact('data'));
     }
     public function nextpagebarangfisik(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()
         ])->get($request->input('link') . "&token=" . Session::get('token'));
-        return view('dashboard.master.barang.index',compact('data'));
+        return view('dashboard.master.barang.fisik',compact('data'));
     }
 
     // Barang Masuk =====================================================================================================================================
