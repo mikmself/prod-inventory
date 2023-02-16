@@ -95,6 +95,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[BarangController::class,'edit'])->name('editbarang');
             Route::post('/update/{id}',[BarangController::class,'update'])->name('updatebarang');
             Route::get('/delete/{id}',[BarangController::class,'destroy'])->name('deletebarang');
+            Route::post('/multipledelete',[BarangController::class,'multipledelete'])->name('multipledeletebarang');
             Route::get('/exportexcel',[BarangController::class,'exportexcel'])->name('exportexcel');
             Route::post('/importexcel',[BarangController::class,'importexcel'])->name('importexcel');
             Route::post('/importbarangmasukhabispakai',[BarangController::class,'importbarangmasukhabispakai'])->name('importbarangmasukhabispakai');
@@ -115,6 +116,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[KategoriController::class,'edit'])->name('editkategori');
             Route::post('/update/{id}',[KategoriController::class,'update'])->name('updatekategori');
             Route::get('/delete/{id}',[KategoriController::class,'destroy'])->name('deletekategori');
+            Route::post('/multipledelete',[KategoriController::class,'multipledelete'])->name('multipledeletekategori');
             Route::post('/search',[KategoriController::class,'search'])->name('searchkategori');
 
             Route::post('/previouspage',[KategoriController::class,'previouspage'])->name('previouspagekategori');
@@ -127,6 +129,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[UnitKerjaController::class,'edit'])->name('editunitkerja');
             Route::post('/update/{id}',[UnitKerjaController::class,'update'])->name('updateunitkerja');
             Route::get('/delete/{id}',[UnitKerjaController::class,'destroy'])->name('deleteunitkerja');
+            Route::post('/multipledelete',[UnitKerjaController::class,'multipledelete'])->name('multipledeleteunitkerja');
             Route::post('/search',[UnitKerjaController::class,'search'])->name('searchunitkerja');
 
             Route::post('/previouspage',[UnitKerjaController::class,'previouspage'])->name('previouspageunitkerja');
@@ -151,6 +154,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[RuangController::class,'edit'])->name('editruang');
             Route::post('/update/{id}',[RuangController::class,'update'])->name('updateruang');
             Route::get('/delete/{id}',[RuangController::class,'destroy'])->name('deleteruang');
+            Route::post('/multipledelete',[RuangController::class,'multipledelete'])->name('multipledeleteruang');
             Route::post('/search',[RuangController::class,'search'])->name('searchruang');
 
             Route::post('/previouspage',[RuangController::class,'previouspage'])->name('previouspageruang');
@@ -163,6 +167,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[SuplayerController::class,'edit'])->name('editsuplayer');
             Route::post('/update/{id}',[SuplayerController::class,'update'])->name('updatesuplayer');
             Route::get('/delete/{id}',[SuplayerController::class,'destroy'])->name('deletesuplayer');
+            Route::post('/multipledelete',[SuplayerController::class,'multipledelete'])->name('multipledeletesuplayer');
             Route::post('/search',[SuplayerController::class,'search'])->name('searchsuplayer');
 
             Route::post('/previouspage',[SuplayerController::class,'previouspage'])->name('previouspagesuplayer');
@@ -175,6 +180,7 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
             Route::get('/edit/{id}',[UserController::class,'edit'])->name('edituser');
             Route::post('/update/{id}',[UserController::class,'update'])->name('updateuser');
             Route::get('/delete/{id}',[UserController::class,'destroy'])->name('deleteuser');
+            Route::post('/multipledelete',[UserController::class,'multipledelete'])->name('multipledeleteuser');
             Route::post('/search',[UserController::class,'search'])->name('searchuser');
 
             Route::post('/importexcel',[UserController::class,'importexcel'])->name('userimportexcel');

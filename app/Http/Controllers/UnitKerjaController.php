@@ -78,7 +78,18 @@ class UnitKerjaController extends Controller
             return redirect(route('indexunitkerja'));
         }
     }
-
+    public function multipledelete(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/unitkerja/multipleDelete".$this->getToken(),$request->all());
+        if($data['code'] == 1){
+            toast($data['message'],'success');
+            return back();
+        }else{
+            toast('gagal menghapus banyak barang','warning');
+            return back();
+        }
+    }
     public function previouspage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()

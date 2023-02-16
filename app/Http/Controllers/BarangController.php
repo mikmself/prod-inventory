@@ -101,6 +101,18 @@ class BarangController extends Controller
             return redirect(route('indexbarang'));
         }
     }
+    public function multipledelete(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/barang/multipleDelete".$this->getToken(),$request->all());
+        if($data['code'] == 1){
+            toast($data['message'],'success');
+            return back();
+        }else{
+            toast('gagal menghapus banyak barang','warning');
+            return back();
+        }
+    }
     public function previouspage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()

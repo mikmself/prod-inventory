@@ -77,7 +77,18 @@ class RuangController extends Controller
             return redirect(route('indexruang'));
         }
     }
-
+    public function multipledelete(Request $request){
+        $data = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/ruang/multipleDelete".$this->getToken(),$request->all());
+        if($data['code'] == 1){
+            toast($data['message'],'success');
+            return back();
+        }else{
+            toast('gagal menghapus banyak barang','warning');
+            return back();
+        }
+    }
     public function previouspage(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()

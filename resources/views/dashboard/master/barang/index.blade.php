@@ -18,64 +18,70 @@
       <label for="barangmodal">Barang Modal</label>
   </form>
   <div class="table-responsive text-nowrap">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="margin-left">ID Barang</th>
-          <th>Nama</th>
-          <th>Kategori</th>
-          <th>Stok</th>
-          <th>Satuan</th>
-          <th>Update Terakhir</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="table-border-bottom-0" id="semuadatabarang">
-        @foreach ($data['data']['data'] as $barang)
-        <tr>
-            <td class="margin-left">{{$barang['id']}}</td>
-            <td>{{$barang['nama']}}</td>
-            <td>{{$barang['kategori']['nama_kategori']}}</td>
-            <td>{{$barang['stok']}}</td>
-            <td>{{$barang['satuan']}}</td>
-            <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
-            <td class="action">
-                @if ($barang['id_kategori'] == 1 && $barang['stok'] > 0)
-                    <div class="modal fade" id="modalBarang{{ $barang['id'] }}" tabindex="-1" aria-labelledby="modalBarang{{ $barang['id'] }}" aria-hidden="true">
-                      <form action="{{ route('printBarcode',$barang['id']) }}" method="post">
-                          @csrf
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h5 class="modal-title" id="modalBarang{{ $barang['id'] }}">Cetak Barcode</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                      <label for="start" class="pt-3 pb-1">Start</label>
-                                      <input type="date" name="start" id="start" class="form-control">
-                                      <label for="end" class="pt-3 pb-1">End</label>
-                                      <input type="date" name="end" id="end" class="form-control">
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-primary">Submit</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                        data-bs-target="#modalBarang{{ $barang['id'] }}">
-                        Cetak Laporan
-                    </button>
-                @endif
-                <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
-                <a href="{{route('deletebarang',$barang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <form action="{{ route('multipledeletebarang') }}" method="POST">
+      @csrf
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="margin-left">ID Barang</th>
+            <th>Nama</th>
+            <th>Kategori</th>
+            <th>Stok</th>
+            <th>Satuan</th>
+            <th>Update Terakhir</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" id="semuadatabarang">
+          @foreach ($data['data']['data'] as $barang)
+          <tr>
+              <td><input type="checkbox" name="arrayId[]" value="{{ $barang['id'] }}" class="form-check-input"></td>
+              <td class="margin-left">{{$barang['id']}}</td>
+              <td>{{$barang['nama']}}</td>
+              <td>{{$barang['kategori']['nama_kategori']}}</td>
+              <td>{{$barang['stok']}}</td>
+              <td>{{$barang['satuan']}}</td>
+              <td>{{ \Carbon\Carbon::parse($barang['updated_at'])->diffForHumans()}}</td>
+              <td class="action">
+                  @if ($barang['id_kategori'] == 1 && $barang['stok'] > 0)
+                      <div class="modal fade" id="modalBarang{{ $barang['id'] }}" tabindex="-1" aria-labelledby="modalBarang{{ $barang['id'] }}" aria-hidden="true">
+                        <form action="{{ route('printBarcode',$barang['id']) }}" method="post">
+                            @csrf
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalBarang{{ $barang['id'] }}">Cetak Barcode</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="start" class="pt-3 pb-1">Start</label>
+                                        <input type="date" name="start" id="start" class="form-control">
+                                        <label for="end" class="pt-3 pb-1">End</label>
+                                        <input type="date" name="end" id="end" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                      <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                          data-bs-target="#modalBarang{{ $barang['id'] }}">
+                          Cetak Laporan
+                      </button>
+                  @endif
+                  <a href="{{route('editbarang',$barang['id'])}}" class="btn btn-warning">Ubah</a>
+                  <a href="{{route('deletebarang',$barang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+              </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button class="btn btn-danger m-4">Multiple Delete</button>
+    </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspagebarang')}}" method="post">

@@ -11,37 +11,43 @@
     </div>
   </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="margin-left">ID user</th>
-          <th>Nama</th>
-          <th>NIP</th>
-          <th>Email</th>
-          <th>No Telephone</th>
-          <th>Level</th>
-          <th>Update Terakhir</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="table-border-bottom-0">
-        @foreach ($data['data']['data'] as $datauser)
-        <tr>
-            <td class="margin-left">{{$datauser['id']}}</td>
-            <td>{{$datauser['firstname']}} {{$datauser['lastname']}}</td>
-            <td>{{$datauser['email']}}</td>
-            <td>{{$datauser['nip']}}</td>
-            <td>{{$datauser['notelp']}}</td>
-            <td>{{$datauser['level']}}</td>
-            <td>{{ \Carbon\Carbon::parse($datauser['updated_at'])->diffForHumans()}}</td>
-            <td class="action">
-                <a href="{{route('edituser',$datauser['id'])}}" class="btn btn-warning">Ubah</a>
-                <a href="{{route('deleteuser',$datauser['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <form action="{{ route('multipledeleteuser') }}" method="POST">
+      @csrf
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="margin-left">ID user</th>
+            <th>Nama</th>
+            <th>NIP</th>
+            <th>Email</th>
+            <th>No Telephone</th>
+            <th>Level</th>
+            <th>Update Terakhir</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          @foreach ($data['data']['data'] as $datauser)
+          <tr>
+              <td><input type="checkbox" name="arrayId[]" value="{{ $datauser['id'] }}" class="form-check-input"></td>
+              <td class="margin-left">{{$datauser['id']}}</td>
+              <td>{{$datauser['firstname']}} {{$datauser['lastname']}}</td>
+              <td>{{$datauser['email']}}</td>
+              <td>{{$datauser['nip']}}</td>
+              <td>{{$datauser['notelp']}}</td>
+              <td>{{$datauser['level']}}</td>
+              <td>{{ \Carbon\Carbon::parse($datauser['updated_at'])->diffForHumans()}}</td>
+              <td class="action">
+                  <a href="{{route('edituser',$datauser['id'])}}" class="btn btn-warning">Ubah</a>
+                  <a href="{{route('deleteuser',$datauser['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+              </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button class="btn btn-danger m-4">Multiple Delete</button>
+    </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspageuser')}}" method="post">

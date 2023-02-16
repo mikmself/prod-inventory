@@ -9,33 +9,39 @@
     <a href="{{route('createsuplayer')}}" class="btn btn-primary">Tambah Data</a>
 </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="margin-left">ID Suplayer</th>
-          <th>Nama</th>
-          <th>Alamat</th>
-          <th>No Telephone</th>
-          <th>Update Terakhir</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="table-border-bottom-0">
-        @foreach ($data['data']['data'] as $suplayer)
-        <tr>
-            <td class="margin-left">{{$suplayer['id']}}</td>
-            <td>{{$suplayer['nama']}}</td>
-            <td>{{$suplayer['alamat']}}</td>
-            <td>{{$suplayer['nohp']}}</td>
-            <td>{{ \Carbon\Carbon::parse($suplayer['updated_at'])->diffForHumans()}}</td>
-            <td class="action">
-                <a href="{{route('editsuplayer',$suplayer['id'])}}" class="btn btn-warning">Ubah</a>
-                <a href="{{route('deletesuplayer',$suplayer['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <form action="{{ route('multipledeletesuplayer') }}" method="POST">
+      @csrf
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="margin-left">ID Suplayer</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>No Telephone</th>
+            <th>Update Terakhir</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          @foreach ($data['data']['data'] as $suplayer)
+          <tr>
+              <td><input type="checkbox" name="arrayId[]" value="{{ $suplayer['id'] }}" class="form-check-input"></td>
+              <td class="margin-left">{{$suplayer['id']}}</td>
+              <td>{{$suplayer['nama']}}</td>
+              <td>{{$suplayer['alamat']}}</td>
+              <td>{{$suplayer['nohp']}}</td>
+              <td>{{ \Carbon\Carbon::parse($suplayer['updated_at'])->diffForHumans()}}</td>
+              <td class="action">
+                  <a href="{{route('editsuplayer',$suplayer['id'])}}" class="btn btn-warning">Ubah</a>
+                  <a href="{{route('deletesuplayer',$suplayer['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+              </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button class="btn btn-danger m-4">Multiple Delete</button>
+    </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspagesuplayer')}}" method="post">

@@ -9,29 +9,35 @@
     <a href="{{route('createunitkerja')}}" class="btn btn-primary">Tambah Data</a>
 </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID Unit Kerja</th>
-          <th>Nama Unit Kerja</th>
-          <th>Update Terakhir</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="table-border-bottom-0">
-        @foreach ($data['data']['data'] as $unitkerja)
-        <tr>
-            <td class="margin-left">{{$unitkerja['id']}}</td>
-            <td>{{$unitkerja['nama']}}</td>
-            <td>{{ \Carbon\Carbon::parse($unitkerja['updated_at'])->diffForHumans()}}</td>
-            <td class="action">
-                <a href="{{route('editunitkerja',$unitkerja['id'])}}" class="btn btn-warning">Edit</a>
-                <a href="{{route('deleteunitkerja',$unitkerja['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <form action="{{ route('multipledeleteunitkerja') }}" method="POST">
+      @csrf
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID Unit Kerja</th>
+            <th>Nama Unit Kerja</th>
+            <th>Update Terakhir</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          @foreach ($data['data']['data'] as $unitkerja)
+          <tr>
+              <td><input type="checkbox" name="arrayId[]" value="{{ $unitkerja['id'] }}" class="form-check-input"></td>
+              <td class="margin-left">{{$unitkerja['id']}}</td>
+              <td>{{$unitkerja['nama']}}</td>
+              <td>{{ \Carbon\Carbon::parse($unitkerja['updated_at'])->diffForHumans()}}</td>
+              <td class="action">
+                  <a href="{{route('editunitkerja',$unitkerja['id'])}}" class="btn btn-warning">Edit</a>
+                  <a href="{{route('deleteunitkerja',$unitkerja['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+              </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button class="btn btn-danger m-4">Multiple Delete</button>
+    </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspageunitkerja')}}" method="post">

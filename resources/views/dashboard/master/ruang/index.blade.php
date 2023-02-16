@@ -9,29 +9,35 @@
     <a href="{{route('createruang')}}" class="btn btn-primary">Tambah Data</a>
 </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="margin-left">ID ruang</th>
-          <th>Nama</th>
-          <th>Update Terakhir</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="table-border-bottom-0">
-        @foreach ($data['data']['data'] as $ruang)
-        <tr>
-            <td class="margin-left">{{$ruang['id']}}</td>
-            <td>{{$ruang['nama']}}</td>
-            <td>{{ \Carbon\Carbon::parse($ruang['updated_at'])->diffForHumans()}}</td>
-            <td class="action">
-                <a href="{{route('editruang',$ruang['id'])}}" class="btn btn-warning">Ubah</a>
-                <a href="{{route('deleteruang',$ruang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <form action="{{ route('multipledeleteruang') }}" method="POST">
+      @csrf
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="margin-left">ID ruang</th>
+            <th>Nama</th>
+            <th>Update Terakhir</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          @foreach ($data['data']['data'] as $ruang)
+          <tr>
+              <td><input type="checkbox" name="arrayId[]" value="{{ $ruang['id'] }}" class="form-check-input"></td>
+              <td class="margin-left">{{$ruang['id']}}</td>
+              <td>{{$ruang['nama']}}</td>
+              <td>{{ \Carbon\Carbon::parse($ruang['updated_at'])->diffForHumans()}}</td>
+              <td class="action">
+                  <a href="{{route('editruang',$ruang['id'])}}" class="btn btn-warning">Ubah</a>
+                  <a href="{{route('deleteruang',$ruang['id'])}}" onclick="return confirm('Apakah anda benar-benar akan menghapusnya?')" class="btn btn-danger">Hapus</a>
+              </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <button class="btn btn-danger m-4">Multiple Delete</button>
+    </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspageruang')}}" method="post">
