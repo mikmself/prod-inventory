@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class UserController extends Controller
 {
@@ -109,9 +110,16 @@ class UserController extends Controller
         }else{
             $path1 = $request->file('file')->store('temp');
             $path=storage_path('app').'/'.$path1;
-            Excel::import(new UserImport, $path);
-            toast('data berhasil di import','success');
-            return back();
+            try {
+                Excel::import(new UserImport, $path);
+                toast('data berhasil di import','success');
+                return back();
+            } catch (ValidationException $e) {
+                $failures = $e->failures();
+                foreach ($failures as $failure) {
+                    toast('error pada baris ke ' . $failure->row(),'error');
+                }
+            }
         }
     }
     public function exportexcel(){

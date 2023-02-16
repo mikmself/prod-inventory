@@ -5,11 +5,14 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UserImport implements ToCollection,WithHeadingRow
+class UserImport implements ToCollection,WithHeadingRow, SkipsOnFailure
 {
+    use SkipsFailures;
     public $api = "http://bpinvservice.bakaranproject.com";
     public function getToken(){
         return "?token=" . Session::get('token');
