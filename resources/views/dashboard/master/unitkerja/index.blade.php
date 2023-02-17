@@ -36,7 +36,7 @@
           @endforeach
         </tbody>
       </table>
-      <button class="btn btn-danger m-4">Multiple Delete</button>
+      <button class="btn btn-danger m-4">Hapus Data Masal</button>
     </form>
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
