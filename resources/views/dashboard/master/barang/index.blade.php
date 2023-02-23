@@ -18,7 +18,7 @@
       <label for="barangmodal">Barang Modal</label>
   </form>
   <div class="table-responsive text-nowrap">
-    <form action="{{ route('multipledeletebarang') }}" method="POST">
+    {{-- <form action="{{ route('multipledeletebarang') }}" id="deleteForm" method="POST"> --}}
       @csrf
       <table class="table table-striped">
         <thead>
@@ -46,7 +46,7 @@
               <td class="action">
                   @if ($barang['id_kategori'] == 1 && $barang['stok'] > 0)
                       <div class="modal fade" id="modalBarang{{ $barang['id'] }}" tabindex="-1" aria-labelledby="modalBarang{{ $barang['id'] }}" aria-hidden="true">
-                        <form action="{{ route('printBarcode',$barang['id']) }}" method="post">
+                        <form action="{{ route('printBarcode',$barang['id']) }}" id="cetakForm" method="post">
                             @csrf
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -80,8 +80,8 @@
           @endforeach
         </tbody>
       </table>
-      <button class="btn btn-danger m-4">Hapus Data Masal</button>
-    </form>
+      <button type="submit" form="deleteForm" class="btn btn-danger m-4">Hapus Data Masal</button>
+    {{-- </form> --}}
   </div>
   <div class="card-footer text-center d-flex justify-content-between align-items-center">
     <form action="{{route('previouspagebarang')}}" method="post">

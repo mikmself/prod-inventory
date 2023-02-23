@@ -93,7 +93,7 @@
                     <p class="school">SMK Negeri 1 Purwokerto</p>
                 </div>
                 <div class="right">
-                    {!! QrCode::size(50)->generate($barang['barangfisik']['kode']) !!}
+                    {!! QrCode::size(50)->generate(route('detailbarang',$barang['barangfisik']['kode'])) !!}
                 </div>
             </div>
             <div class="content">
