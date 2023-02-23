@@ -135,6 +135,10 @@ class BarangController extends Controller
         ])->get($this->api."/barang/fisik" . $this->getToken());
         return view('dashboard.master.barang.fisik',compact('data'));
     }
+    public function detailbarang($kode){
+        $data = Http::get($this->api."/barang/fisik/".$kode);
+        return view('feuser.detailfisik',compact('data'));
+    }
     public function previouspagebarangfisik(Request $request){
         $data = Http::withHeaders([
             'apikey' => $this->getApiKey()

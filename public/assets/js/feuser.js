@@ -117,10 +117,6 @@ $.ajax({
             div.classList = "item";
             div.id = `bhp${element.id}`;
 
-            let img = document.createElement('img');
-            img.src = "/assets/icons/itembarang.png";
-            img.classList = "img";
-
             let divkanan = document.createElement('div');
             divkanan.classList = "kanan";
 
@@ -140,7 +136,6 @@ $.ajax({
             pdesc.prepend(span);
             divkanan.appendChild(pnama);
             divkanan.appendChild(pdesc);
-            div.appendChild(img);
             div.appendChild(divkanan);
 
             let divdata = document.getElementById('databarang');
