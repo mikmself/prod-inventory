@@ -29,7 +29,7 @@
             @csrf
             <div class="mb-3">
               <label for="nip" class="form-label">Nip</label>
-              <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan Nip" autofocus>
+              <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan Nip / Email" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">

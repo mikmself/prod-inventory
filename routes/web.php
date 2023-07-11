@@ -203,5 +203,6 @@ Route::prefix('admin/dashboard')->middleware(['cektoken','levelcheck'])->group(f
         Route::post('/exportBarangModalKeluar',[LaporanController::class,'exportBarangModalKeluar'])->name('exportBarangModalKeluar');
         Route::post('/exportBarangModalPinjam',[LaporanController::class,'exportBarangModalPinjam'])->name('exportBarangModalPinjam');
         Route::post('/exportBarangModalKembali',[LaporanController::class,'exportBarangModalKembali'])->name('exportBarangModalKembali');
+        Route::post('/laporanBarangKeluarUnitKerja',[LaporanController::class,'laporanBarangKeluarUnitKerja'])->name('laporanBarangKeluarUnitKerja');
     });
 });

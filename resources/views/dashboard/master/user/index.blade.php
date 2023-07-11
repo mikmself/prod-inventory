@@ -19,8 +19,8 @@
             <th></th>
             <th class="margin-left">ID user</th>
             <th>Nama</th>
-            <th>NIP</th>
             <th>Email</th>
+            <th>NIP</th>
             <th>No Telephone</th>
             <th>Level</th>
             <th>Update Terakhir</th>

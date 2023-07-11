@@ -10,6 +10,7 @@ use App\Exports\BarangModalPinjam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class LaporanController extends Controller
 {
@@ -20,7 +21,8 @@ class LaporanController extends Controller
         $barang = collect($data->json()['data']);
         $barangModal = $barang->whereIn('id_kategori',1);
         $barangHabisPakai = $barang->whereIn('id_kategori',2);
-        return view('dashboard.laporan.index',compact('barang','barangModal','barangHabisPakai'));
+        $unitkerja = Http::get($this->api."/user/nonauth/indexunitkerja");
+        return view('dashboard.laporan.index',compact('barang','barangModal','barangHabisPakai','unitkerja'));
     }
     public function exportBarangMasuk(Request $request){
         return Excel::download(new BarangMasuk($request->all()), date('d-m-y-H-i-s',time()) . 'barangmasuk.xlsx');
@@ -36,5 +38,16 @@ class LaporanController extends Controller
     }
     public function exportBarangModalKembali(Request $request){
         return Excel::download(new BarangModalKembali($request->all()), date('d-m-y-H-i-s',time()) . 'barangmodalKembali.xlsx');
+    }
+    public function laporanBarangKeluarUnitKerja(Request $request){
+        $barangkeluar = Http::withHeaders([
+            'apikey' => $this->getApiKey()
+        ])->post($this->api."/laporan/laporanbarangkeluarunitkerja".$this->getToken(),$request->all());
+        view()->share('employee',$barangkeluar);
+        $pdfContent = PDF::loadView('dashboard.laporan.cetak', compact('barangkeluar'))->output();
+        return response()->streamDownload(
+            fn () => print($pdfContent),
+            "barang habis pakai unit kerja.pdf"
+        );
     }
 }

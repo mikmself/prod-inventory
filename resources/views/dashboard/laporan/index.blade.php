@@ -161,6 +161,38 @@
         </form>
     </div>
 
+    <!-- Modal barang keluar unit kerja-->
+    <div class="modal fade" id="modalBarangKeluarUnitKerja" tabindex="-1" aria-labelledby="modalBarangModalKembali" aria-hidden="true">
+        <form action="{{ route('laporanBarangKeluarUnitKerja') }}" method="post">
+            @csrf
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalBarangModalKembali">Laporan Barang Keluar Unit Kerja</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="nama" class="pt-3 pb-1">Unit Kerja</label>
+                        <select class="form-control" name="id_unitkerja">
+                            @foreach ($unitkerja['data'] as $unitkerja)
+                                <option value="{{ $unitkerja['id'] }}">{{ $unitkerja['nama'] }}</option>                                
+                            @endforeach
+                        </select>
+                        <label for="start" class="pt-3 pb-1">Start</label>
+                        <input type="date" name="start" id="start" class="form-control">
+                        <label for="end" class="pt-3 pb-1">End</label>
+                        <input type="date" name="end" id="end" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
 
     <div class="card">
         <div class="table-responsive text-nowrap">
@@ -223,13 +255,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>4</td>
+                        <td>5</td>
                         <td>Barang Modal Kembali</td>
                         <td>Barang Modal</td>
                         <td>
                             <!-- Button trigger modal barang modal kembali -->
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                 data-bs-target="#modalBarangModalKembali">
+                                Cetak Laporan
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Barang Keluar Unit Kerja</td>
+                        <td>Barang Habis Pakai</td>
+                        <td>
+                            <!-- Button trigger modal barang modal kembali -->
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#modalBarangKeluarUnitKerja">
                                 Cetak Laporan
                             </button>
                         </td>

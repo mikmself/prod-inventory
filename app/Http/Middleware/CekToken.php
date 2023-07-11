@@ -14,6 +14,7 @@ class CekToken
         $token = Session::get('token');
         $apikey = Session::get('apikey');
         $api = "http://bpinvservice.bakaranproject.com";
+        // $api = "http://127.0.0.1:8000";
         if(isset($token) && isset($apikey)){
             $data = Http::withHeaders([
                 'apikey' => $apikey
