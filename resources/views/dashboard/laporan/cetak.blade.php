@@ -13,10 +13,11 @@
             flex-direction: column;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
         }
 
         header {
-            width: 85%;
+            width: 100%;
         }
         header h1 {
             margin-top: 1cm;
@@ -32,7 +33,7 @@
         }
 
         main {
-            width: 85%;
+            width: 100%;
         }
         main table, main td, main th {
             border: 1px solid;
@@ -52,15 +53,17 @@
             flex-direction: column;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
         }
         footer table {
             text-align: center;
+            width: 45%;
         }
         footer table tr.ttd {
             height: 2cm;
         }
         footer .container {
-            width: 80%;
+            width: 100%;
             margin-top: 1cm;
             display: flex;
             flex-direction: row;
@@ -122,7 +125,7 @@
             <tr>
                 <th>Plt. KEPALA TATA USAHA</th>
             </tr>
-            <tr class="ttd">
+            <tr class="ttd" style="position: relative; top: 2cm;">
                 <td></td>
             </tr>
             <tr>
@@ -133,11 +136,11 @@
             </tr>
         </table>
         <div class="container">
-            <table>
+            <table style="float: left">
                 <tr>
                     <th>YANG MENYERAHKAN</th>
                 </tr>
-                <tr class="ttd">
+                <tr class="ttd" style="position: relative; top: 2cm;">
                     <td></td>
                 </tr>
                 <tr>
@@ -147,11 +150,11 @@
                     <td><b></b></td>
                 </tr>
             </table>
-            <table>
+            <table style="float: right">
                 <tr>
                     <th>YANG MENERIMA</th>
                 </tr>
-                <tr class="ttd">
+                <tr class="ttd" style="position: relative; top: 2cm;">
                     <td></td>
                 </tr>
                 <tr>
